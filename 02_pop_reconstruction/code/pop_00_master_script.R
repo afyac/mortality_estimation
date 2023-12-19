@@ -1,0 +1,189 @@
+#...............................................................................
+### +++++++++ RECONSTRUCTING POPULATION DENOMINATORS IN SOMALIA ++++++++++++ ###
+#...............................................................................
+
+#...............................................................................
+## --- R SCRIPT TO READ DATASETS AND PARAMETERS, AND CALL OTHER SCRIPTS  ---- ##
+#...............................................................................
+
+                          # LSHTM, SIMAD University (August 2023)
+                          # francesco.checchi@lshtm_ac.uk 
+
+#...............................................................................
+### Preparatory steps
+#...............................................................................
+
+  #...................................      
+  ## Install or load required R packages
+
+    # List of required packages
+    x1 <- c("flextable", "ggplot2", "ggpubr", "gtools", "lhs", 
+      "MASS", "mgcv", "paletteer", "parameters", "readxl", "reshape2", "scales",
+      "tidyverse", "ggthemes")
+    
+    # Install any packages not yet installed
+    x2 <- x1 %in% row.names(installed.packages())
+    if (any(x2 == FALSE)) { install.packages(x1[! x2]) }
+
+    # Load all packages    
+    lapply(x1, library, character.only = TRUE)
+    
+    
+  #...................................      
+  ## Starting setup
+
+    # Clean up from previous code / runs
+    rm(list=ls(all=TRUE) )
+  
+    # Set font
+    windowsFonts(Arial=windowsFont("Arial"))
+
+    # Set working directory to where this file is stored
+    dir_path <- paste(dirname(rstudioapi::getActiveDocumentContext()$path  )
+      , "/", sep = "")
+    setwd(dir_path)
+    print( getwd() )
+    dir_path <- gsub("/code", "", dir_path)
+    
+    # Initialise random numbers
+    set.seed(123)
+    
+    # Colour-blind palette for graphing
+    palette_cb <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", 
+      "#0072B2", "#D55E00", "#CC79A7")
+    show_col(palette_cb)
+
+    
+#...............................................................................  
+### Reading in required data
+#...............................................................................
+
+  #...................................      
+  ## Read 'static' or manually updated demographic datasets
+
+    # Identify file name
+    filename <- paste(dir_path, 'data/', "som_demog_data.xlsx", sep="")
+    
+    # Read data table, dictionary and specific parameters
+    data_tab <- data.frame(readxl::read_excel(filename, sheet = "data_table"))
+    data_dict <- data.frame(readxl::read_excel(filename, sheet = "dictionary"))
+    demog_pars <- data.frame(readxl::read_excel(filename, sheet = "demog_pars"))
+    
+    # Read each dataset and column used in analysis
+    for (i in 1:nrow(data_tab)) {
+      if (data_tab[i, "used_in_analysis"] == "Y") {
+        
+        # what to read
+        which_sheet <- data_tab[i, "worksheet"]
+        which_cols <- data_dict[which(data_dict$worksheet == which_sheet & 
+          data_dict$used_in_analysis == "Y"), "variable"]
+        
+        # read and attribute name
+        x <- data.frame(readxl::read_excel(filename, sheet = which_sheet))
+        assign(which_sheet, x[, which_cols])
+      }
+    }
+    
+  #...................................      
+  ## Read other needed datasets
+    
+    # IDP PRMN dataset from its source Github repository
+    prmn <- try(read.csv("https://raw.githubusercontent.com/unhcr/dataviz-somalia-prmn/master/data/PRMNDataset.csv"),
+      silent = TRUE)
+    if (inherits(prmn, "try-error") ) {
+    warning("WARNING: PRMN data cannot be downloaded: using local copy instead")
+      prmn <- read.csv(paste(dir_path, 
+      'data/som_prmn_from_unhcr_github.csv', sep ="")) 
+    }
+
+    # Districts, regions and parts of Somalia
+    admin2 <- data.frame(readxl::read_excel(paste(dir_path, 
+      '../00_overall_data/som_admin2.xlsx', sep ="")) )
+      
+    # DTM fitting data
+    dtm <- read.csv(paste(dir_path, "data/som_dtm_idp_ret_prev_tofit.csv", 
+      sep =""))
+
+    # SMART survey household observations (for under 5 year population model)
+    hh_obs <- rio::import(paste(dir_path, 
+                                '../01_extract_smart_surveys//output/som_smart_surveys_data.rds', sep =""))
+    
+#...............................................................................  
+### Setting or reading various necessary parameters
+#...............................................................................
+        
+  #.........................................
+  ## Set various parameters
+    
+    # Start and end years / months for reconstruction
+###FC: (NOTE: SHOULD BE READ ONCE FROM GENERIC PARAMETERS)
+    y_start <- 2014
+    y_end <- 2023
+    m_start <- 1
+    m_end <- 10
+    burn_in_period <- 1 # by how many years to extend period backwards
+    burn_out_period <- 0 # by how many years to extend period forward
+    when <- list(y_start, y_end, m_start, m_end, burn_in_period, 
+      burn_out_period)
+    names(when) <- (c("y_start", "y_end", "m_start", "m_end", "burn_in_period",
+      "burn_out_period"))
+
+    # Define parameter ranges to be explored
+    prop_stay_range <- c(0, 1)
+    ret_time_range <- c(1, 120)
+    prop_stay_grid <- seq(prop_stay_range[1], prop_stay_range[2], by = 0.01)
+    ret_time_grid <- seq(ret_time_range[1], ret_time_range[2], by = 1)
+
+    # How many runs for each population source, for parameter estimation
+    runs_est <- 1000
+    
+    # How many runs for final population reconstruction
+    runs_final <- 1000
+    
+    
+  #.........................................
+  ## Read other parameters from the input data
+    
+    # Assumed natural growth rate per person-month
+    g <- (demog_pars[which(demog_pars$parameter == "assumed_cbr"), "value"] - 
+      demog_pars[which(demog_pars$parameter == "assumed_cdr"), "value"] ) /
+      (1000 * 12)
+
+    # Time point that the UNPESS IDP prevalence dataset refers to
+    m_unpess_idp <- data_tab[which(data_tab$worksheet == "idp_unpess_prop"),"m"]
+    y_unpess_idp <- data_tab[which(data_tab$worksheet == "idp_unpess_prop"),"y"]
+        
+  
+#...............................................................................  
+### Calling other analysis scripts
+#...............................................................................
+
+  #.........................................
+  ## Source functions
+  
+  source(paste(dir_path, "code/pop_00_specify_functions.R", sep =""))
+
+    
+  #.........................................
+  ## Prepare datasets for analysis
+    
+  source(paste(dir_path, "code/pop_01_prepare_datasets.R", sep =""))
+
+        
+  #.........................................
+  ## Estimate unknown IDP return parameters
+    
+  source(paste(dir_path, "code/pop_02_estimate_return_pars.R", sep =""))
+    
+
+  #.........................................
+  ## Reconstruct population denominators
+    
+  source(paste(dir_path, "code/pop_03_reconstruct_pop.R", sep =""))
+    
+    
+        
+#...............................................................................  
+### ENDS
+#...............................................................................
+     

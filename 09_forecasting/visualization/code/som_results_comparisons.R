@@ -1,0 +1,96 @@
+
+
+## Source functions
+source("09_forecasting/code/00_source_function.R")
+
+## Import GLMM and GLMM Under 5 Models -----------------------------------------
+
+# Import Model Overall and Under 5
+glm_model <- rio::import('10_rshiny_app/data/som_glm_model.rds')
+glm_model_u5 <- rio::import('10_rshiny_app/data/som_glm_model_u5.rds')
+
+# Import the data of forecasting
+static_data <- rio::import('09_forecasting/output/som_statict_forecasting_data.csv')
+pessimist_data <- rio::import('09_forecasting/output/som_pessimistic_forecasting_data.csv')
+optimistic_data <- rio::import('09_forecasting/output/som_optimistic_forecasting_data.csv')
+
+
+# Import real data
+preds_df <- rio::import("10_rshiny_app/data/som_predicting_data.rds") |>
+  dplyr::filter(date >= "2015-01-01" & date <= "2023-09-01")
+
+# Calculate real values
+real_value <- f_pred_forecast(preds_df, glm_model, name_output='static_scen')
+static_value <- f_pred_forecast(static_data, glm_model, name_output='static_scen')
+pessimist_value <- f_pred_forecast(pessimist_data, glm_model, name_output='static_scen')
+optimistic_value <- f_pred_forecast(optimistic_data, glm_model, name_output='static_scen')
+
+# Calculate real values UNDER 5
+real_value_u5 <- f_pred_forecast(preds_df, glm_model_u5, name_output='static_scen')
+static_value_u5 <- f_pred_forecast(static_data, glm_model_u5, name_output='static_scen')
+pessimist_value_u5 <- f_pred_forecast(pessimist_data, glm_model_u5, name_output='static_scen')
+optimistic_value_u5 <- f_pred_forecast(optimistic_data, glm_model_u5, name_output='static_scen')
+
+
+ts_all <- list(pessimist_value, static_value, optimistic_value, real_value)
+ts_all[[1]]$scen <- 'pess_data'
+ts_all[[2]]$scen <- 'stat_data'
+ts_all[[3]]$scen <- 'opt_data'
+ts_all[[4]]$scen <- 'real_data'
+ts_comb <- do.call(rbind, ts_all) |> mutate(date = as.Date(date))
+start_period <- '2021-06-01'
+DATE_FORECAST <- '2023-04-01'
+
+data <- ts_comb |>
+  dplyr::filter(date > as.Date('2021-06-01')) |>
+  dplyr::filter(date < as.Date(max(static_value$date)))
+
+cdr <-  data |>
+  ggplot(aes(date, dr, color = scen)) +
+  geomtextpath::geom_textvline(label = "Start of Forecasting", xintercept = as.Date(start_period), linetype = "dashed", hjust = 0.05,
+                               lwd = 1) +
+  geom_point() +
+  geom_smooth(se = FALSE, span = 0.9, data = data |> dplyr::filter(date >= as.Date(DATE_FORECAST))) +
+  geom_smooth(data = data |> dplyr::filter(date <= as.Date(DATE_FORECAST)), color = "darkred", span = 0.2, se = FALSE) +
+  geom_point(data = data |> dplyr::filter(date <= as.Date(DATE_FORECAST)), color = "black") +
+  theme_bw(base_size = 14) +
+  scale_color_viridis_d(end = 0.8, name = "Forecast:   ", labels = c("Optimistic  ", "Pessimistic  ", "Static", "Reality")) +
+  scale_x_date(date_labels = "%m-%Y", breaks = seq.Date(as.Date(start_period), as.Date(max(static_value$date)), by = "6 months")) +
+  ylim(c(min(optimistic_value$dr), max(pessimist_value$dr)))+
+  ylab(" \n Median crude death rate\n(per 10,000 person-days)") +
+  xlab(" \nDate")
+
+ts_all_u5 <- list(pessimist_value_u5,  static_value_u5, optimistic_value_u5, real_value_u5)
+ts_all_u5[[1]]$scen <- 'pess_data'
+ts_all_u5[[2]]$scen <- 'stat_data'
+ts_all_u5[[3]]$scen <- 'opt_data'
+ts_all_u5[[4]]$scen <- 'real_data'
+
+ts_comb_u5 <- do.call(rbind, ts_all_u5) |> mutate(date = as.Date(date))
+data_u5 <- ts_comb_u5 |>
+  dplyr::filter(date > as.Date(start_period)) |>
+  dplyr::filter(date < as.Date(max(static_value_u5$date))) 
+cdru5 <- data_u5 |>
+  ggplot(aes(date, dr, color = scen)) +
+  geomtextpath::geom_textvline(label = "Start of Forecasting", xintercept = as.Date(DATE_FORECAST), linetype = "dashed", hjust = 0.05, lwd = 1) +
+  geom_point() +
+  geom_smooth(se = FALSE, data = data_u5 |> dplyr::filter(date >= as.Date(DATE_FORECAST))) +
+  geom_smooth(data = data_u5 |> dplyr::filter(date <= as.Date(DATE_FORECAST)), color = "darkred", span = 0.2, se = FALSE) +
+  geom_point(data =data_u5 |> dplyr::filter(date <= as.Date(DATE_FORECAST)), color = "black") +
+  theme_bw(base_size = 14) +
+  scale_color_viridis_d(end = 0.8, name = "Forecast Scenario:   ", labels = c("Optimistic  ", "Pessimistic  ", "Static", 'Reality')) +
+  scale_x_date(date_labels = "%m-%Y", breaks = seq.Date(as.Date(start_period), as.Date(max(static_value_u5$date)), by = "6 months")) +
+  ylim(c(min(optimistic_value_u5$dr), max(pessimist_value_u5$dr)))+
+  ylab(" \n Median under 5s death rate \n(per 10,000 person-days)") +
+  xlab(" \nDate")
+
+cdrall <- cowplot::plot_grid(cdr + theme(legend.position = "none"),
+                             cdru5 + theme(legend.position = "none"),
+                             ncol = 1, labels = "auto",
+                             align = "v")
+cdrall2 <- cowplot::plot_grid(cowplot::get_legend(cdru5 + theme(legend.position = "top")),
+                              cdrall, ncol = 1, rel_heights = c(0.1, 1))
+
+# Save the plot for the report
+ggsave('09_forecasting/visualization/output/som_glmm_reality.png', 
+       dpi = "print", width = 25, height = 25, units = "cm")
