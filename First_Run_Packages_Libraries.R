@@ -17,3 +17,7 @@ lapply(list_packages, library, character.only = TRUE)
 if(!('mast' %in% list_packages %in% row.names(installed.packages()))){
   remotes::install_github("afyac/mast", upgrade = FALSE)
 }
+
+## Please check if you have the right version of the Matrix Package (1.6-4)
+## Else uncomment the following line and run it
+# install.packages("Matrix", dependencies = TRUE, input='source')
