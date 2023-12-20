@@ -7,7 +7,5 @@ __Please, first, read the Morality_Estimation_Documentation.pdf to understand th
 
 __Note__: If you only wish to view and experiment with the RShiny App for forecasting scenarios, you have 
 two options. The first one is to use the GitHub repository available in the following link: 
-https://github.com/afyac/Forecasting_Scenario_App or to refer to the next section (Packages, 
-libraries, and versions) to ensure that you have the necessary packages to launch the RShiny app. Then 
-go to the folder entitled "10_rshiny_app" and follow the instructions provided in the following video:
+https://github.com/afyac/Forecasting_Scenario_App. The second one is to use to launch the RShiny App from the folder entitled "10_rshiny_app" and follow the instructions provided in the following video:
 https://lshtm.clo
