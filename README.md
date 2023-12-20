@@ -5,7 +5,7 @@ This folder contains some retrospective and forecasting scenarios methods from a
 __Please, first, read the Morality_Estimation_Documentation.pdf to understand the different stages and load the right packages__
 
 
-If you only wish to view and experiment with the RShiny App for forecasting scenarios, you have 
+__Note__: If you only wish to view and experiment with the RShiny App for forecasting scenarios, you have 
 two options. The first is to use the GitHub repository available in the following link: 
 https://github.com/afyac/Forecasting_Scenario_App or to refer to the next section (Packages, 
 libraries, and versions) to ensure that you have the necessary packages to launch the RShiny app. Then 
