@@ -5,5 +5,9 @@ This folder contains some retrospective and forecasting scenarios methods from a
 __Please, first, read the Morality_Estimation_Documentation.pdf to understand the different stages and load the right packages__
 
 
-Note: If you only wish to view and experiment with the RShiny app for forecasting scenarios, please refer to the section called Packages, libraries, and versions in the Mortality_Estimation_Documentation.pdf to ensure that you have the necessary packages to launch the RShiny app. Then go to the folder entitled "10_rshiny_app" and follow the instructions provided in the following video: 
-https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7ea184cf-2028-4554-867a-b0d901059162
+If you only wish to view and experiment with the RShiny App for forecasting scenarios, you have 
+two options. The first is to use the GitHub repository available in the following link: 
+https://github.com/afyac/Forecasting_Scenario_App or to refer to the next section (Packages, 
+libraries, and versions) to ensure that you have the necessary packages to launch the RShiny app. Then 
+go to the folder entitled "10_rshiny_app" and follow the instructions provided in the following video:
+https://lshtm.clo
