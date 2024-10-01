@@ -41,13 +41,13 @@ produce_final_file <- function(dir_path){
   time_series <- f_gen_ts(when_f = WHEN)
   
   # Add stard and end date into our dataset
-  data$start_year <- year(as.Date(data$Start_Date))
-  data$start_month <- month(as.Date(data$Start_Date))
-  data$end_year <- year(as.Date(data$End_Date))
-  data$end_month <- month(as.Date(data$End_Date))
+  data$start_year <- lubridate::year(as.Date(data$Start_Date))
+  data$start_month <- lubridate::month(as.Date(data$Start_Date))
+  data$end_year <- lubridate::year(as.Date(data$End_Date))
+  data$end_month <- lubridate::month(as.Date(data$End_Date))
   data$recall_mid <- as.Date(data$End_Date) - data$Recall_Days/2
-  data$year <- year(data$recall_mid)
-  data$month <- month(data$recall_mid)
+  data$year <- lubridate::year(data$recall_mid)
+  data$month <- lubridate::month(data$recall_mid)
   
   ##Merge mid time to obtain the year, month and time unit
   data <- merge(data, time_series, by.x = c('year', 'month'), by.y=c('year', 'month'), all.x=TRUE)

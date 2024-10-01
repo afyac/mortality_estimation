@@ -1,0 +1,26 @@
+{
+    "id": "22D84383",
+    "path": "~/Somalia/som_mortality_estimation/08_define_final_model/code/01_som_fit_predict_overall.R",
+    "project_path": "08_define_final_model/code/01_som_fit_predict_overall.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1726825673723.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "8,91",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1721926374,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1721926374,
+    "read_only": false,
+    "read_only_alternatives": []
+}

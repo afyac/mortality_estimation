@@ -38,6 +38,7 @@ generate_csv_aggregate <- function(read_lines_file, new_name){
   df <- lapply(df, `length<-`, max(lengths(df)))
   df <- as.data.frame(do.call(rbind, df))
   df[is.na(df)] <- ""
-  colnames(df) <- c('HH', 'Cluster',	'HH_members_Total', 'HH_members_u5', 'joined_HH_total', 'joined_HH_u5', 'left_HH_total', 'left_HH_u5', 'Births', 'Deaths_Total', 'Deaths_u5')
+  colnames(df) <- c('HH', 'Cluster',	'HH_members_Total', 'HH_members_u5', 'joined_HH_total', 
+                    'joined_HH_u5', 'left_HH_total', 'left_HH_u5', 'Births', 'Deaths_Total', 'Deaths_u5')
   write.csv(df, paste(dir_path, 'admin2_surveys/aggregate_surveys/csv_files/', new_name, '.csv', sep=""), row.names = FALSE)
 }

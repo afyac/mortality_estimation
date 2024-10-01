@@ -1,0 +1,167 @@
+"SurveyID","Old_Name","Agency","District","Region","LHZ","Start_Date","End_Date","Recall_Days","Quality_Score","UnkCode","InjCode","ViolCode"
+"SOM_2023_07_lhz_addun_pastoral","Addun Pastoral Gu 2023.as","FSNAU",NA,NA,"addun","2023-07-13","2023-07-21","93","0.94","0",NA,NA
+"SOM_2023_07_lhz_coastal_NA","Coastal Deeh 2023 Gu.as","FSNAU",NA,NA,"coastal","2023-07-15","2023-07-23","93","1","0",NA,NA
+"SOM_2023_07_lhz_hawd_pastoral","Hawd Pastoral Central Ne 2023 Gu.as","FSNAU",NA,NA,"hawd","2023-07-13","2023-07-21","93","0.94","0",NA,NA
+"SOM_2023_12_lhz_nw_NA","NW Agropastoral_1223.as","FSNAU",NA,NA,"nw","2023-12-02","2023-12-10","90","0.84","0",NA,NA
+"SOM_2023_07_lhz_shabelle_NA","Shabelle_AP Agropastoral_2023_Gu Rev.as","FSNAU",NA,NA,"shabelle","2023-07-14","2023-07-20","93","0.95","0",NA,NA
+"SOM_2023_01_lhz_nip_NA","SOM-NW NIP_0823.as","FSNAU",NA,NA,"nip","2023-01-08","2023-09-07","93","0.81","0",NA,NA
+"SOM_2016_07_lhz_addun_NA","SOM_201607_LHZ_Addun.as","FSNAU",NA,NA,"addun","2016-07-07","2016-11-07","160","0.93","0",NA,NA
+"SOM_2016_07_lhz_bay_NA","SOM_201607_LHZ_Bay_AgroPast Agropastoral.as","FSNAU",NA,NA,"bay","2016-07-10","2016-07-17","160","0.78","0","0",NA
+"SOM_NA_NA_lhz_coastal_NA","SOM_201607_LHZ_coastal_deeh.as","FSNAU",NA,NA,"coastal","2016-07-14","2016-07-16","160","0.91","0",NA,NA
+"SOM_2016_07_lhz_guban_NA","SOM_201607_LHZ_Guban_Pastoralpastoral.as","FSNAU",NA,NA,"guban","2016-07-07","2016-07-15","160","0.84","0",NA,NA
+"SOM_2016_07_lhz_hawd_ne","SOM_201607_LHZ_Hawd_NE.as","FSNAU",NA,NA,"hawd","2016-07-07","2016-07-18","160","0.86","0",NA,NA
+"SOM_NA_NA_lhz_ngedo_past","SOM_201607_LHZ_Ngedo past.as","FSNAU",NA,NA,"ngedo","2016-07-12","2016-12-07","160","0.94","0",NA,NA
+"SOM_2016_07_lhz_ngedo_riverine","SOM_201607_LHZ_Ngedo riverine.as","FSNAU",NA,NA,"ngedo","2016-07-13","2016-12-07","160","0.94","0",NA,NA
+"SOM_2016_07_lhz_nw_NA","SOM_201607_LHZ_NW AgroPast Agropastoral.as","FSNAU",NA,NA,"nw","2016-07-07","2016-12-07","160","1","0",NA,NA
+"SOM_2016_06_lhz_nw_pastoral","SOM_201607_LHZ_NW Hawd.as","FSNAU",NA,NA,"nw","2016-04-06","2016-12-07","160","0.9","0",NA,NA
+"SOM_2016_07_lhz_nip_pastoral","SOM_201607_LHZ_NWNE_NIP pastoral.as","FSNAU",NA,NA,"nip","2016-07-07","2016-07-16","160","0.89","0",NA,NA
+"SOM_2016_07_lhz_shabelle_NA","SOM_201607_LHZ_Shabelle_AP Agropastoral.as","FSNAU",NA,NA,"shabelle","2016-07-07","2016-07-14","160","0.94","0",NA,NA
+"SOM_2016_07_lhz_westgolis_NA","SOM_201607_LHZ_WestGolis.as","FSNAU",NA,NA,"westgolis","2016-07-08","2016-11-07","160","0.91","0",NA,NA
+"SOM_2016_12_lhz_addun_pastoral","SOM_201612_LHZ_Addun.as","FSNAU",NA,NA,"addun","2016-12-18","2016-12-24","90","0.92","0",NA,NA
+"SOM_2016_11_lhz_bay_agro","SOM_201612_LHZ_Bay Agro PastAgropastoral.as","FSNAU",NA,NA,"bay","2016-11-20","2016-12-23","90","0.88","0",NA,NA
+"SOM_2016_12_lhz_coastal_ne","SOM_201612_LHZ_coastal deeh.as","FSNAU",NA,NA,"coastal","2016-12-17","2016-12-28","90","0.87","0",NA,NA
+"SOM_2016_12_lhz_guban_pastoral","SOM_201612_LHZ_Guban Pastoral.as","FSNAU",NA,NA,"guban","2016-12-12","2016-12-26","90","0.78","0",NA,NA
+"SOM_2016_12_lhz_hawd_NA","SOM_201612_LHZ_Hawd.as","FSNAU",NA,NA,"hawd","2016-12-18","2016-12-24","90","0.84","0",NA,NA
+"SOM_2016_12_lhz_ngedo_past","SOM_201612_LHZ_Ngedo past.as","FSNAU",NA,NA,"ngedo","2016-12-17","2016-12-22","90","0.91","0",NA,NA
+"SOM_2016_12_lhz_ngedo_riverine","SOM_201612_LHZ_Ngedo riverine.as","FSNAU",NA,NA,"ngedo","2016-12-17","2016-12-22","90","0.95","0",NA,NA
+"SOM_2016_12_lhz_nip_ne","SOM_201612_LHZ_NIP_NW_NE pastoral.as","FSNAU",NA,NA,"nip","2016-12-16","2016-12-26","90","0.91","0",NA,NA
+"SOM_2016_12_lhz_nw_NA","SOM_201612_LHZ_NW AgroPast Agropastoral.as","FSNAU",NA,NA,"nw","2016-12-10","2016-12-24","90","0.94","0",NA,NA
+"SOM_2016_12_lhz_shabelle_NA","SOM_201612_LHZ_Shabelle AP Agropastoral.as","FSNAU",NA,NA,"shabelle","2016-12-17","2016-12-22","90","0.88","0",NA,NA
+"SOM_2016_12_lhz_shabelle_riverine","SOM_201612_LHZ_Shabelle Riverine.as","FSNAU",NA,NA,"shabelle","2016-12-17","2016-12-23","90","0.88","0",NA,NA
+"SOM_2016_12_lhz_westgolis_NA","SOM_201612_LHZ_West_Golis.as","FSNAU",NA,NA,"westgolis","2016-12-18","2017-02-21","90","0.87","0",NA,NA
+"SOM_2017_12_lhz_addun_NA","SOM_201712_LHZ_Addun.as","FSNAU",NA,NA,"addun","2017-12-09","2017-12-16","101","0.82","0",NA,NA
+"SOM_2007_08_lhz_bay_NA","SOM_201712_LHZ_Bay_AgroPast Agropastoral.as","FSNAU",NA,NA,"bay","2007-08-12","2017-12-15","101","0.95","0",NA,NA
+"SOM_2017_12_lhz_coastal_NA","SOM_201712_LHZ_coastal_deeh.as","FSNAU",NA,NA,"coastal","2017-12-08","2017-12-16","101","0.76","0",NA,NA
+"SOM_2017_12_lhz_guban_past","SOM_201712_LHZ_Guban.as","FSNAU",NA,NA,"guban","2017-12-09","2017-12-16","101","0.88","0",NA,NA
+"SOM_2017_12_lhz_nip_ne","SOM_201712_LHZ_NE_NIP pastoral.as","FSNAU",NA,NA,"nip","2017-12-08","2017-12-16","101","0.94","0",NA,NA
+"SOM_2017_12_lhz_hawd_ne","SOM_201712_LHZ_NE_hawd.as","FSNAU",NA,NA,"hawd","2017-12-09","2017-12-17","101","0.86","0",NA,NA
+"SOM_2017_08_lhz_riverine_riverine","SOM_201712_LHZ_NG riverine.as","FSNAU",NA,NA,"riverine","2017-07-08","2017-12-14","101","0.95","0",NA,NA
+"SOM_2017_09_lhz_gedo_pastoral","SOM_201712_LHZ_NG_pastoral.as","FSNAU",NA,NA,"gedo","2017-08-12","2017-12-14","101","0.97","0",NA,NA
+"SOM_2017_12_lhz_nw_NA","SOM_201712_LHZ_NW_NIPpastoral.as","FSNAU",NA,NA,"nw","2017-12-08","2017-12-18","101","0.89","0",NA,NA
+"SOM_2017_12_lhz_nw_pastoral","SOM_201712_LHZ_NW_Hawd.as","FSNAU",NA,NA,"nw","2017-12-08","2017-12-16","101","0.96","0",NA,NA
+"SOM_2017_11_lhz_shabelle_NA","SOM_201712_LHZ_Shabelle Agropastoral.as","FSNAU",NA,NA,"shabelle","2017-11-09","2017-12-30","101","0.88","0",NA,NA
+"SOM_2017_11_lhz_shabelle_riverine","SOM_201712_LHZ_Shabelle Riverine.as","FSNAU",NA,NA,"shabelle","2017-08-12","2017-12-14","101","0.93","0",NA,NA
+"SOM_2018_07_lhz_addun_NA","SOM_201806_LHZ_Addun.as","FSNAU",NA,NA,"addun","2018-07-07","2018-12-07","102","0.98","0",NA,NA
+"SOM_2018_01_lhz_bakool_pastoral","SOM_201806_LHZ_Bakool_pastoral.as","FSNAU",NA,NA,"bakool","2018-01-08","2018-08-01","102","0.95","0",NA,NA
+"SOM_2008_10_lhz_bay_NA","SOM_201806_LHZ_Bay_Agropastoral.as","FSNAU",NA,NA,"bay","2008-10-07","2020-09-07","102","0.92","0",NA,NA
+"SOM_2018_07_lhz_coastal_NA","SOM_201806_LHZ_coastal_deeh.as","FSNAU",NA,NA,"coastal","2018-07-07","2018-07-15","102","0.97","0",NA,NA
+"SOM_2018_07_lhz_eastgolis_NA","SOM_201806_LHZ_eastgolis.as","FSNAU",NA,NA,"eastgolis","2018-06-07","2018-12-07","102","0.83","0",NA,NA
+"SOM_2018_07_lhz_guban_pastoral","SOM_201806_LHZ_Guban pastoral.as","FSNAU",NA,NA,"guban","2018-07-07","2018-07-14","102","0.77","0",NA,NA
+"SOM_2018_07_lhz_hawd_ne","SOM_201806_LHZ_NE_hawd.as","FSNAU",NA,NA,"hawd","2018-07-07","2018-10-07","102","0.91","0",NA,NA
+"SOM_2018_05_lhz_ngedo_river","SOM_201806_LHZ_Ngedo river riverine.as","FSNAU",NA,NA,"ngedo","2018-05-07","2018-11-07","102","0.95","0",NA,NA
+"SOM_2008_08_lhz_nip_pastoral","SOM_201806_LHZ_NIP_NW pastoral.as","FSNAU",NA,NA,"nip","2008-08-07","2018-12-10","102","0.96","0",NA,NA
+"SOM_2018_07_lhz_inland_ne","SOM_201806_LHZ_North_Inland_Pastoralpastoral.as","FSNAU",NA,NA,"inland","2018-07-06","2018-11-07","102","0.96","0",NA,NA
+"SOM_2018_07_lhz_nw_NA","SOM_201806_LHZ_NW AgroPast Agropastoral.as","FSNAU",NA,NA,"nw","2018-06-07","2018-12-07","102","0.96","0",NA,NA
+"SOM_2018_06_lhz_nw_NA","SOM_201806_LHZ_NW Hawd.as","FSNAU",NA,NA,"nw","2018-06-07","2018-12-07","102","0.88","0",NA,NA
+"SOM_2018_08_lhz_riverine_riverine","SOM_201806_LHZ_Shab Riverine riverine.as","FSNAU",NA,NA,"riverine","2018-08-07","2018-12-07","102","0.89","0",NA,NA
+"SOM_2018_07_lhz_westgolis_NA","SOM_201806_LHZ_West_Golis.as","FSNAU",NA,NA,"westgolis","2018-07-06","2018-07-13","102","0.94","0",NA,NA
+"SOM_2019_07_lhz_addun_pastoral","som_201907_lhz_addun_pastoral.as","FSNAU",NA,NA,"addun","2019-07-07","2019-12-07","97","0.9","0",NA,NA
+"SOM_2019_06_lhz_bay_NA","som_201907_lhz_bay_agropast.as","FSNAU",NA,NA,"bay","2019-06-07","2019-12-07","97","0.93","0",NA,NA
+"SOM_2019_07_lhz_coastal_pastoral","som_201907_lhz_coastaldeeh_pastoral.as","FSNAU",NA,NA,"coastal","2019-07-06","2019-07-15","97","1","0",NA,NA
+"SOM_2019_07_lhz_eastgolis_NA","som_201907_lhz_eastgolis.as","FSNAU",NA,NA,"eastgolis","2019-07-07","2019-10-07","97","0.86","0",NA,NA
+"SOM_2019_07_lhz_riverine_riverine","som_201907_lhz_pump_riverine.as","FSNAU",NA,NA,"riverine","2019-07-06","2019-07-11","97","0.91","0",NA,NA
+"SOM_2019_07_lhz_guban_pastoral","som_201907_lhz_guban.as","FSNAU",NA,NA,"guban","2019-07-06","2019-07-14","97","0.95","0",NA,NA
+"SOM_2019_07_lhz_hawd_pastoral","som_201907_lhz_nechawd_pastoral.as","FSNAU",NA,NA,"hawd","2019-07-07","2019-10-07","97","0.84","0",NA,NA
+"SOM_2019_07_lhz_nip_ne","som_201907_lhz_nip_ne.as","FSNAU",NA,NA,"nip","2019-07-06","2019-07-19","97","0.98","0",NA,NA
+"SOM_2008_11_lhz_nip_NA","som_201907_lhz_nip_nw.as","FSNAU",NA,NA,"nip","2008-11-09","2019-07-15","97","0.75","0",NA,NA
+"SOM_2008_11_lhz_nw_NA","som_201907_lhz_nw_agropast.as","FSNAU",NA,NA,"nw","2008-11-06","2019-07-13","97","0.92","0",NA,NA
+"SOM_2019_07_lhz_nw_pastoral","som_201907_lhz_nwhawd_pastoral.as","FSNAU",NA,NA,"nw","2019-07-06","2019-07-14","97","0.77","0",NA,NA
+"SOM_2019_07_lhz_gedo_pastoral","som_201907_lhz_si_pastoral.as","FSNAU",NA,NA,"gedo","2019-07-06","2019-07-12","97","0.91","0",NA,NA
+"SOM_2019_07_lhz_shabelle_NA","som_201907_lhz_srainfed.as","FSNAU",NA,NA,"shabelle","2019-07-08","2019-07-14","97","0.97","0",NA,NA
+"SOM_2019_07_lhz_westgolis_NA","som_201907_lhz_westgolis.as","FSNAU",NA,NA,"westgolis","2019-07-05","2019-07-15","97","0.91","0",NA,NA
+"SOM_2000_08_lhz_addun_pastoral","som_202008_lhz_addun_pastoral.as","FSNAU",NA,NA,"addun","2000-08-20","2020-08-28","109","0.92","0",NA,NA
+"SOM_2020_08_lhz_bay_NA","som_202008_lhz_bay_agropast.as","FSNAU",NA,NA,"bay","2020-08-19","2020-08-25","109","0.95","0",NA,NA
+"SOM_2020_08_lhz_coastal_pastoral","som_202008_lhz_coastaldeeh_pastoral.as","FSNAU",NA,NA,"coastal","2020-08-20","2020-08-28","109","0.91","0",NA,NA
+"SOM_2020_08_lhz_eastgolis_NA","som_202008_lhz_eastgolis.as","FSNAU",NA,NA,"eastgolis","2020-08-21","2020-08-30","109","0.83","0",NA,NA
+"SOM_2020_08_lhz_riverine_riverine","som_202008_lhz_pump_riverine.as","FSNAU",NA,NA,"riverine","2020-08-18","2020-08-24","109","0.92","0",NA,NA
+"SOM_2020_08_lhz_guban_pastoral","som_202008_lhz_guban.as","FSNAU",NA,NA,"guban","2020-08-17","2020-08-25","109","0.94","0",NA,NA
+"SOM_2020_08_lhz_hawd_pastoral","som_202008_lhz_nechawd_pastoral.as","FSNAU",NA,NA,"hawd","2020-08-01","2020-08-27","109","0.91","0",NA,NA
+"SOM_2020_08_lhz_nip_ne","som_202008_lhz_nip_ne.as","FSNAU",NA,NA,"nip","2020-08-19","2020-08-28","109","0.95","0",NA,NA
+"SOM_2020_08_lhz_nip_NA","som_202008_lhz_nip_nw.as","FSNAU",NA,NA,"nip","2020-08-20","2020-08-30","109","0.92","0",NA,NA
+"SOM_2020_08_lhz_nw_NA","som_202008_lhz_nw_agropast.as","FSNAU",NA,NA,"nw","2020-08-16","2020-08-24","109","0.89","0",NA,NA
+"SOM_2020_08_lhz_nw_pastoral","som_202008_lhz_nwhawd_pastoral.as","FSNAU",NA,NA,"nw","2020-08-16","2020-09-01","109","0.99","0",NA,NA
+"SOM_2020_08_lhz_gedo_pastoral","som_202008_lhz_si_pastoral.as","FSNAU",NA,NA,"gedo","2020-08-18","2020-08-26","109","0.97","0",NA,NA
+"SOM_2020_08_lhz_shabelle_NA","som_202008_lhz_srainfed.as","FSNAU",NA,NA,"shabelle","2020-08-19","2020-08-27","109","0.98","0",NA,NA
+"SOM_2020_08_lhz_westgolis_NA","som_202008_lhz_westgolis.as","FSNAU",NA,NA,"westgolis","2020-08-17","2020-08-24","109","0.92","0",NA,NA
+"SOM_2016_10_lhz_addun_pastoral","som_202012_lhz_addun_pastoral.as","FSNAU",NA,NA,"addun","2016-10-06","2020-12-14","95","0.98","0",NA,NA
+"SOM_2020_05_lhz_bay_NA","som_202012_lhz_bay_agropast.as","FSNAU",NA,NA,"bay","2020-05-12","2020-11-12","95","0.96","0",NA,NA
+"SOM_2020_12_lhz_coastal_pastoral","som_202012_lhz_coastaldeeh_pastoral.as","FSNAU",NA,NA,"coastal","2020-12-05","2020-12-14","95","0.94","0",NA,NA
+"SOM_2020_12_lhz_eastgolis_NA","som_202012_lhz_eastgolis.as","FSNAU",NA,NA,"eastgolis","2020-12-06","2020-12-16","95","0.82","0",NA,NA
+"SOM_2020_12_lhz_riverine_riverine","som_202012_lhz_gravity_riverine.as","FSNAU",NA,NA,"riverine","2020-12-06","2020-12-12","95","0.91","0",NA,NA
+"SOM_2020_12_lhz_guban_pastoral","som_202012_lhz_guban.as","FSNAU",NA,NA,"guban","2020-12-06","2020-12-14","95","0.96","0",NA,NA
+"SOM_2020_12_lhz_hawd_pastoral","som_202012_lhz_nechawd_pastoral.as","FSNAU",NA,NA,"hawd","2020-12-05","2020-12-15","95","0.77","0",NA,NA
+"SOM_2020_12_lhz_nip_ne","som_202012_lhz_nip_ne.as","FSNAU",NA,NA,"nip","2020-12-05","2020-12-14","95","0.98","0",NA,NA
+"SOM_2020_12_lhz_nip_NA","som_202012_lhz_nip_nw.as","FSNAU",NA,NA,"nip","2020-12-05","2020-12-15","95","0.78","0",NA,NA
+"SOM_2020_12_lhz_nw_NA","som_202012_lhz_nw_agropast.as","FSNAU",NA,NA,"nw","2020-12-04","2020-12-12","95","1","0",NA,NA
+"SOM_2020_12_lhz_nw_pastoral","som_202012_lhz_nwhawd_pastoral.as","FSNAU",NA,NA,"nw","2020-12-04","2020-12-11","95","0.99","0",NA,NA
+"SOM_2020_05_lhz_riverine_riverine","som_202012_lhz_pump_riverine.as","FSNAU",NA,NA,"riverine","2020-05-12","2020-12-10","95","0.88","0",NA,NA
+"SOM_2020_12_lhz_gedo_pastoral","som_202012_lhz_si_pastoral.as","FSNAU",NA,NA,"gedo","2020-12-05","2020-12-12","95","0.84","0",NA,NA
+"SOM_2020_12_lhz_shabelle_NA","som_202012_lhz_srainfed.as","FSNAU",NA,NA,"shabelle","2020-12-05","2020-12-12","95","0.99","0",NA,NA
+"SOM_2020_12_lhz_westgolis_pastoral","som_202012_lhz_westgolis.as","FSNAU",NA,NA,"westgolis","2020-12-05","2020-12-13","95","1","0",NA,NA
+"SOM_2021_07_lhz_addun_pastoral","som_202107_lhz_addun_pastoral.as","FSNAU",NA,NA,"addun","2021-07-09","2021-12-07","86","0.93","0",NA,NA
+"SOM_2021_07_lhz_bay_agro","som_202107_lhz_bay_agropast.as","FSNAU",NA,NA,"bay","2021-07-13","2021-12-07","86","1","0",NA,NA
+"SOM_2021_07_lhz_coastal_pastoral","som_202107_lhz_coastaldeeh_pastoral.as","FSNAU",NA,NA,"coastal","2021-07-05","2021-07-18","86","0.94","0",NA,NA
+"SOM_2021_07_lhz_eastgolis_pastoral","som_202107_lhz_eastgolis.as","FSNAU",NA,NA,"eastgolis","2021-07-03","2021-07-18","86","0.93","0",NA,NA
+"SOM_2021_07_lhz_riverine_riverine","som_202107_lhz_pump_riverine.as","FSNAU",NA,NA,"riverine","2021-07-08","2021-09-07","86","0.95","0",NA,NA
+"SOM_2020_07_lhz_guban_pastoral","som_202107_lhz_guban.as","FSNAU",NA,NA,"guban","2020-07-02","2021-07-09","86","0.85","0",NA,NA
+"SOM_2021_04_lhz_hawd_pastoral","som_202107_lhz_nechawd_pastoral.as","FSNAU",NA,NA,"hawd","2021-04-14","2021-07-17","86","0.92","0",NA,NA
+"SOM_2021_07_lhz_nip_ne","som_202107_lhz_nip_ne.as","FSNAU",NA,NA,"nip","2021-07-09","2021-07-18","86","0.99","0",NA,NA
+"SOM_2021_07_lhz_nip_pastoral","som_202107_lhz_nip_nw.as","FSNAU",NA,NA,"nip","2021-07-02","2021-07-10","86","0.86","0",NA,NA
+"SOM_2021_01_lhz_nw_NA","som_202107_lhz_nw_agropast.as","FSNAU",NA,NA,"nw","2021-01-07","2021-08-07","86","0.95","0",NA,NA
+"SOM_2021_06_lhz_nw_pastoral","som_202107_lhz_nwhawd_pastoral.as","FSNAU",NA,NA,"nw","2021-06-30","2021-07-10","86","0.99","0",NA,NA
+"SOM_2021_07_lhz_rainfed_agro","som_202107_lhz_rainfed.as","FSNAU",NA,NA,"rainfed","2021-07-10","2021-07-17","86","0.89","0",NA,NA
+"SOM_2021_07_lhz_ngedo_pastoral","som_202107_lhz_si_pastoral.as","FSNAU",NA,NA,"ngedo","2021-07-10","2021-12-07","86","0.92","0",NA,NA
+"SOM_2021_07_lhz_westgolis_pastoral","som_202107_lhz_westgolis.as","FSNAU",NA,NA,"westgolis","2021-07-01","2021-07-09","86","0.88","0",NA,NA
+"SOM_2021_12_lhz_addun_pastoral","som_202112_lhz_addun_pastoral.as","FSNAU",NA,NA,"addun","2021-12-17","2021-12-31","92","0.97","0",NA,NA
+"SOM_2021_12_lhz_bay_NA","som_202112_lhz_bay_agropast.as","FSNAU",NA,NA,"bay","2021-12-20","2021-12-26","92","1","0",NA,NA
+"SOM_2021_12_lhz_eastgolis_pastoral","som_202112_lhz_eastgolis.as","FSNAU",NA,NA,"eastgolis","2021-12-18","2021-12-28","92","0.85","0",NA,NA
+"SOM_2021_12_lhz_riverine_riverine","som_202112_lhz_pump_riverine.as","FSNAU",NA,NA,"riverine","2021-12-17","2021-12-26","92","0.86","0",NA,NA
+"SOM_2021_12_lhz_guban_pastoral","som_202112_lhz_guban.as","FSNAU",NA,NA,"guban","2021-12-14","2021-12-26","92","0.88","0",NA,NA
+"SOM_2021_12_lhz_nip_ne","som_202112_lhz_nip_ne.as","FSNAU",NA,NA,"nip","2021-12-17","2021-12-26","93","0.97","0",NA,NA
+"SOM_2021_12_lhz_nip_NA","som_202112_lhz_nip_nw.as","FSNAU",NA,NA,"nip","2021-12-16","2021-12-27","92","0.81","0",NA,NA
+"SOM_2021_12_lhz_nw_NA","som_202112_lhz_nw_agropast.as","FSNAU",NA,NA,"nw","2021-12-17","2021-12-25","92","0.88","0",NA,NA
+"SOM_2021_12_lhz_hawd_pastoral","som_202112_lhz_nwhawd_pastoral.as","FSNAU",NA,NA,"hawd","2021-12-16","2021-12-29","92","0.94","0",NA,NA
+"SOM_2021_12_lhz_rainfed_NA","som_202112_lhz_rainfed.as","FSNAU",NA,NA,"rainfed","2021-12-18","2021-12-24","92","0.88","0",NA,NA
+"SOM_2021_12_lhz_gedo_pastoral","som_202112_lhz_si_pastoral.as","FSNAU",NA,NA,"gedo","2021-12-20","2021-12-26","92","0.89","0",NA,NA
+"SOM_2021_12_lhz_westgolis_pastoral","som_202112_lhz_westgolis.as","FSNAU",NA,NA,"westgolis","2021-12-12","2021-12-26","92","0.94","0",NA,NA
+"SOM_2022_01_lhz_addun_pastoral","som_202204_lhz_addun_pastoral.as","FSNAU",NA,NA,"addun","2022-01-05","2022-05-02","93","0.92","0",NA,NA
+"SOM_2022_04_lhz_bay_NA","som_202204_lhz_bay_agropast.as","FSNAU",NA,NA,"bay","2022-04-05","2022-05-05","93","0.94","0",NA,NA
+"SOM_2022_04_lhz_hawd_pastoral","som_202204_lhz_nechawd_pastoral.as","FSNAU",NA,NA,"hawd","2022-04-24","2022-05-03","93","0.89","0",NA,NA
+"SOM_2022_03_lhz_riverine_riverine","som_202204_lhz_pump_riverine.as","FSNAU",NA,NA,"riverine","2022-03-24","2022-04-29","93","0.91","0",NA,NA
+"SOM_2022_07_lhz_bay_NA","som_202207_lhz_bay_agropast.as","FSNAU",NA,NA,"bay","2022-07-16","2022-07-22","60","0.96","0",NA,NA
+"SOM_2022_07_lhz_coastal_pastoral","som_202207_lhz_coastaldeeh_pastoral.as","FSNAU",NA,NA,"coastal","2022-07-10","2022-07-28","60","0.95","0",NA,NA
+"SOM_2022_07_lhz_eastgolis_pastoral","som_202207_lhz_eastgolis.as","FSNAU",NA,NA,"eastgolis","2022-07-01","2022-07-27","60","0.92","0",NA,NA
+"SOM_2022_07_lhz_riverine_riverine","som_202207_lhz_pump_riverine.as","FSNAU",NA,NA,"riverine","2022-07-16","2022-07-22","60","0.95","0",NA,NA
+"SOM_2022_07_lhz_nip_ne","som_202207_lhz_nip_ne.as","FSNAU",NA,NA,"nip","2022-07-15","2022-07-28","60","0.94","0",NA,NA
+"SOM_2022_07_lhz_gedo_pastoral","som_202207_lhz_si_pastoral.as","FSNAU",NA,NA,"gedo","2022-07-17","2022-07-23","60","0.84","0",NA,NA
+"SOM_2022_07_lhz_shabelle_NA","som_202207_lhz_srainfed.as","FSNAU",NA,NA,"shabelle","2022-07-12","2022-07-23","60","0.88","0",NA,NA
+"SOM_2022_10_lhz_addun_pastoral","SOM_Addun Pastoral Central Oct 2022.as","FSNAU",NA,NA,"addun","2022-10-18","2022-10-28","60","1","0",NA,NA
+"SOM_2022_10_lhz_hawd_pastoral","SOM_Hawd Pastoral Central Oct 2022.as","FSNAU",NA,NA,"hawd","2022-10-17","2022-10-25","60","0.89","0",NA,NA
+"SOM_2022_09_lhz_shabelle_NA","som_202210_lhz_mshabelle_sorghum.as","FSNAU",NA,NA,"shabelle","2022-09-17","2022-10-23","60","0.87","0",NA,NA
+"SOM_2023_12_lhz_addun_pastoral","SOM_Addun Pastoral Deyr 2023.as","FSNAU",NA,NA,"addun","2023-12-02","2023-12-10","90","0.93","0",NA,NA
+"SOM_2023_08_lhz_bay_agro","SOM_Bay AgroPastoral _1223.as","FSNAU",NA,NA,"bay","2023-08-12","2023-12-14","90","0.95","0",NA,NA
+"SOM_2023_07_lhz_bay_NA","SOM_Bay Agropastoral_0723Rev.as","FSNAU",NA,NA,"bay","2023-07-14","2023-07-20","93","0.98","0",NA,NA
+"SOM_2022_12_lhz_coastal_ne","SOM_Coastal deeh NE Deyr 2022.as","FSNAU",NA,NA,"coastal","2022-12-14","2022-12-25","60","0.9","0",NA,NA
+"SOM_2023_12_lhz_coastal_pastoral","SOM_Coastal Deeh pastoral Northeast Deyr 2023.as","FSNAU",NA,NA,"coastal","2023-12-01","2023-12-10","90","0.98","0",NA,NA
+"SOM_2022_12_lhz_eastgolis_ne","SOM_EastGolis NE Deyr 2022.as","FSNAU",NA,NA,"eastgolis","2022-12-04","2022-12-28","60","0.96","0",NA,NA
+"SOM_2023_07_lhz_eastgolis_pastoral","SOM_EastGolis Pastoral_Combined_0823.as","FSNAU",NA,NA,"eastgolis","2023-07-19","2023-08-05","93","0.87","0",NA,NA
+"SOM_2023_12_lhz_eastgolis_pastoral","SOM_EastGolis_1223.as","FSNAU",NA,NA,"eastgolis","2023-12-02","2023-12-10","90","0.98","0",NA,NA
+"SOM_2023_01_lhz_guban_pastoral","SOM_Guban Pastoral_0823.xls.as","FSNAU",NA,NA,"guban","2023-01-08","2023-08-05","93","0.95","0",NA,NA
+"SOM_2023_12_lhz_guban_pastoral","SOM_Guban Pastoral_1223.as","FSNAU",NA,NA,"guban","2023-12-02","2023-12-10","90","0.92","0",NA,NA
+"SOM_2023_12_lhz_hawd_pastoral","SOM_Hawd Pastoral Central_ Deyr 2023.as","FSNAU",NA,NA,"hawd","2023-12-02","2023-12-10","90","0.99","0",NA,NA
+"SOM_NA_NA_lhz_riverine_riverine","SOM_NG Riverine Deyr 2023.as","FSNAU",NA,NA,"riverine","2023-12-09","2023-12-15","90","0.92","0",NA,NA
+"SOM_2022_12_lhz_ngedo_pastoral","SOM_NGedo _Pastoral_1222.as","FSNAU",NA,NA,"ngedo","2022-12-14","2022-12-20","60","0.81","0",NA,NA
+"SOM_2022_04_lhz_ngedo_riverine","SOM_NGedo _Riverine_1222.as","FSNAU",NA,NA,"ngedo","2022-04-14","2022-12-22","60","0.91","0",NA,NA
+"SOM_2023_11_lhz_ngedo_pastoral","SOM_NGedo Pastoral Deyr 2023.as","FSNAU",NA,NA,"ngedo","2023-11-12","2023-12-15","90","0.92","0",NA,NA
+"SOM_2023_07_lhz_ngedo_pastoral","SOM_NGedo Pastoral_0723.as","FSNAU",NA,NA,"ngedo","2023-07-15","2023-07-21","93","0.91","0",NA,NA
+"SOM_2023_07_lhz_ngedo_riverine","SOM_NGedo Riverine_0723.as","FSNAU",NA,NA,"ngedo","2023-07-15","2023-07-21","93","0.92","0",NA,NA
+"SOM_2023_07_lhz_nip_ne","SOM_NIP NE 2023 Gu.as","FSNAU",NA,NA,"nip","2023-07-14","2023-07-22","93","0.93","0",NA,NA
+"SOM_2022_12_lhz_nip_ne","SOM_NIP NE Deyr 2022.as","FSNAU",NA,NA,"nip","2022-12-05","2022-12-25","60","0.93","0",NA,NA
+"SOM_2023_12_lhz_inland_pastoral","SOM_Northern Inland Pastoral Northeast Deyr 2023.as","FSNAU",NA,NA,"inland","2023-12-01","2023-12-09","90","0.94","0",NA,NA
+"SOM_2021_07_lhz_nw_pastoral","SOM_NW Hawd Pastoral_0823.as","FSNAU",NA,NA,"nw","2021-07-30","2023-08-09","93","0.91","0",NA,NA
+"SOM_2023_12_lhz_nw_pastoral","SOM_NW Northern Inland Pastoral_1223.as","FSNAU",NA,NA,"nw","2023-12-01","2023-12-10","90","0.86","0",NA,NA
+"SOM_2021_07_lhz_nw_NA","SOM_NWAgropastoral_082Rev.as","FSNAU",NA,NA,"nw","2021-07-25","2023-08-10","93","0.98","0",NA,NA
+"SOM_2023_12_lhz_shabelle_NA","SOM_Shabelle Agropastoral Deyr 2023.as","FSNAU",NA,NA,"shabelle","2023-12-02","2023-12-09","90","0.94","0",NA,NA
+"SOM_2022_12_lhz_shabelle_riverine","SOM_Shabelle Riverine Deyr 2023.as","FSNAU",NA,NA,"shabelle","2022-12-04","2030-12-04","90","0.9","0",NA,NA
+"SOM_2023_07_lhz_shabelle_riverine","SOM_Shabelle_Riverine_2023_Gu.as","FSNAU",NA,NA,"shabelle","2023-07-14","2023-07-21","93","0.94","0",NA,NA
+"SOM_2023_12_lhz_westgolis_pastoral","SOM_WestGolis Pastoral_1223.as","FSNAU",NA,NA,"westgolis","2023-12-01","2023-12-10","90","0.84","0",NA,NA

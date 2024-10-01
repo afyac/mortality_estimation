@@ -1,11 +1,3 @@
-# Load required libraries
-pacman::p_load(
-  tidyverse,
-  sf,
-  rio,
-  grid,
-  mast)
-
 # Function to plot countrywide death rate evolution ---------------------------
 
 f_country_dr_plot <- function(res_data, resp_var='cdr'){
@@ -35,28 +27,28 @@ f_country_dr_plot <- function(res_data, resp_var='cdr'){
       }
       
       # Plot 1 - free y axis
-      plot1 <- ggplot(data = res_data, aes(x = date, y = .data[[dr]])) + 
-        geom_point(alpha = 0.3, size = 3, colour = colours_f[6]) +
-        geom_line(aes(y = zoo::rollmean(.data[[dr]], k = 3, fill = NA, align = "right")),
+      plot1 <- ggplot2::ggplot(data = res_data, ggplot2::aes(x = date, y = .data[[dr]])) + 
+        ggplot2::geom_point(alpha = 0.3, size = 3, colour = colours_f[6]) +
+        ggplot2::geom_line(ggplot2::aes(y = zoo::rollmean(.data[[dr]], k = 3, fill = NA, align = "right")),
                   alpha = 0.7, linewidth = 1, colour = colours_f[7]) +
-        scale_y_continuous(dr_lab) +  
-        scale_x_date("Year", date_breaks = "1 year", date_labels = "%Y") +
-        theme_bw()
+        ggplot2::scale_y_continuous(dr_lab) +  
+        ggplot2::scale_x_date("Year", date_breaks = "1 year", date_labels = "%Y") +
+        ggplot2::theme_bw()
       
       # Plot 2 - y axis intersects at 0
-      plot2 <- ggplot(data = res_data, aes(x = date, y = .data[[dr]])) + 
-        geom_point(alpha = 0.3, size = 3, colour = colours_f[6]) +
-        geom_line(aes(y = zoo::rollmean(.data[[dr]], k = 3, fill = NA, align = "right")),
+      plot2 <- ggplot2::ggplot(data = res_data, ggplot2::aes(x = date, y = .data[[dr]])) + 
+        ggplot2::geom_point(alpha = 0.3, size = 3, colour = colours_f[6]) +
+        ggplot2::geom_line(ggplot2::aes(y = zoo::rollmean(.data[[dr]], k = 3, fill = NA, align = "right")),
                   alpha = 0.7, linewidth = 1, colour = colours_f[7]) +
-        scale_y_continuous(dr_lab, limits = c(0, NA)) +  
-        scale_x_date("Year", date_breaks = "1 year", date_labels = "%Y") +
-        theme_bw()
+        ggplot2::scale_y_continuous(dr_lab, limits = c(0, NA)) +  
+        ggplot2::scale_x_date("Year", date_breaks = "1 year", date_labels = "%Y") +
+        ggplot2::theme_bw()
       
       # Combine plots and save
-      plot <- ggarrange(plot2, plot1, nrow = 2, align = "v")
+      plot <- ggpubr::ggarrange(plot2, plot1, nrow = 2, align = "v")
       
       # save plot
-      ggsave(paste("08_define_final_model/visualisation/output/som_country_level_", annot, '.png', sep=""),
+      ggplot2::ggsave(paste("08_define_final_model/visualisation/output/som_country_level_", annot, '.png', sep=""),
              width = 10, height = 8, dpi = 320)
 }
 
@@ -81,39 +73,39 @@ f_cdr_map <- function(data, resp_var) {
     colnames(mast_data) <- c('dist_id', 'district', 'geometry')
     data <- merge(mast_data, data , by=c('district'), all.y = TRUE)
     data$dist_2 <- ifelse(data$dist_id < 10, paste0(data$dist_id, ": ", data$district), paste0(data$dist_id, ": ", data$district))
-    data$dist_2 <- factor(data$dist_2, levels = unique(data$dist_2))
+    data$dist_2 <- factor(data$dist_2[order(unique(data$dist_id))], levels = data$dist_2[order(unique(data$dist_id))])
     
     # Create the base plot
     p <- ggplot2::ggplot(data) +
-      geom_sf(aes(color = dist_2, fill = .data[[dr]])) +
-      geom_sf_text(aes(label = dist_id), color = "grey20") +
-      geom_sf(fill = NA, color = "black", data = som_shp$adm1, show.legend = FALSE, lwd = 0.6) +
-      geom_rect(xmin = 44.5, ymin = 1, xmax = 46.5, ymax = 3, fill = NA, colour = "black", size = 0.6) +
-      ylim(-2, 13) +
-      xlim(41, 51) +
-      theme_bw() +
-      labs(color = "Districts", y = NULL, x = NULL) +
-      scale_fill_gradient2(
+      ggplot2::geom_sf(ggplot2::aes(color = dist_2, fill = .data[[dr]])) +
+      ggplot2::geom_sf_text(ggplot2::aes(label = dist_id), color = "grey20") +
+      ggplot2::geom_sf(fill = NA, color = "black", data = mast::som_shp$adm1, show.legend = FALSE, lwd = 0.6) +
+      ggplot2::geom_rect(xmin = 44.5, ymin = 1, xmax = 46.5, ymax = 3, fill = NA, colour = "black", size = 0.6) +
+      ggplot2::ylim(-2, 13) +
+      ggplot2::xlim(41, 51) +
+      ggplot2::theme_bw() +
+      ggplot2::labs(color = "Districts", y = NULL, x = NULL) +
+      ggplot2::scale_fill_gradient2(
         low = "#0055cc", high = "#cc0000", 
         # trans = "sqrt",
-        guide = guide_colorbar(
+        guide = ggplot2::guide_colorbar(
           barwidth = 11, title.position = "top",
           title.vjust = 1, title.hjust = 0.37
         ),
         name = leg_label,
         midpoint = median(data[[dr]])
       ) +
-      theme(
+      ggplot2::theme(
         legend.position = "right",
-        legend.background = element_rect(color = NA, fill = NA, size = 0.2),
-        panel.grid = element_blank(),
-        legend.text = element_text(size = "12"),
-        legend.title = element_text(size = "12"),
+        legend.background = ggplot2::element_rect(color = NA, fill = NA, size = 0.2),
+        panel.grid = ggplot2::element_blank(),
+        legend.text = ggplot2::element_text(size = "12"),
+        legend.title = ggplot2::element_text(size = "12"),
         legend.direction = "horizontal"
       ) +
-      scale_color_manual(
+      ggplot2::scale_color_manual(
         values = rep(c("black"), 74),
-        guide = guide_legend(
+        guide = ggplot2::guide_legend(
           title.position = "top", title.hjust = 0.1,
           override.aes = list(
             color = "#00000000",
@@ -123,35 +115,35 @@ f_cdr_map <- function(data, resp_var) {
       )
     
     # Create a version with just the fill legend and save as a grob
-    p_fill <- p + guides(color = FALSE)
+    p_fill <- p + ggplot2::guides(color = FALSE)
     
-    g <- ggplotGrob(p_fill)
+    g <- ggplot2::ggplotGrob(p_fill)
     
     # Create another version with just the color legend
-    p_color <- p + theme(
+    p_color <- p + ggplot2::theme(
       legend.position = "right",
-      legend.title = element_text(face = "bold")
-    ) + guides(fill = FALSE)
+      legend.title = ggplot2::element_text(face = "bold")
+    ) + ggplot2::guides(fill = FALSE)
     
     # Add the fill legend into the color plot at a specific location
-    p_color <- p_color + annotation_custom(
+    p_color <- p_color + ggplot2::annotation_custom(
       grob = g$grobs[[which(g$layout$name == "guide-box")]],
       xmin = 1, xmax = 84.75, ymin = 0.935, ymax = 24.5
     )
     
-    p_color <- p_color %>%
+    p_color <- p_color |>
       cowplot::ggdraw() +
       cowplot::draw_plot(
         {
           p_color +
-            coord_sf(
+            ggplot2::coord_sf(
               xlim = c(44.5, 46),
               ylim = c(1.5, 3),
               expand = FALSE
             ) +
-            theme(
-              legend.position = "none", axis.ticks = element_blank(),
-              axis.text = element_blank()
+            ggplot2::theme(
+              legend.position = "none", axis.ticks = ggplot2::element_blank(),
+              axis.text = ggplot2::element_blank()
             )
         },
         x = 0.40,
@@ -160,9 +152,11 @@ f_cdr_map <- function(data, resp_var) {
         height = 0.26
       )
     
-  ggsave(paste0("08_define_final_model/visualisation/output/som_out_cdr_map_", annot, ".png"),
+  ggplot2::ggsave(paste0("08_define_final_model/visualisation/output/som_out_cdr_map_", annot, ".png"),
          dpi = "print", width = 30, height = 30, units = "cm", scale = 0.97
   )
   })
   return(p_color)
 }
+
+

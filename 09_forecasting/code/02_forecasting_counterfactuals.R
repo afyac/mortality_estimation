@@ -3,8 +3,8 @@ source("09_forecasting/code/00_source_function.R")
 
 ## Import GLMM and GLMM Under 5 Models -----------------------------------------
 # Import Model Overall and Under 5
-glm_model <- rio::import('10_rshiny_app/data/som_glm_model.rds')
-glm_model_u5 <- rio::import('10_rshiny_app/data/som_glm_model_u5.rds')
+glm_model <- rio::import('08_define_final_model/output/som_glm_model.rds')
+glm_model_u5 <- rio::import('08_define_final_model/output/som_glm_model_u5_u5.rds')
 
 # Import the data
 static_data <- rio::import('09_forecasting/output/som_statict_forecasting_data.csv')
@@ -25,55 +25,71 @@ boostrapping_results_u5_opt <- f_boostrapping(glm_model_u5, optimistic_data)
 #First choose the date for period1 
 start_date_period_1 <- "2015-01-01"
 end_date_period_1 <- "2016-06-01"
-start_date_period_2 <- "2022-01-01"
-end_date_period_2 <- "2022-12-01"
+start_date_period_2 <- "2024-07-01"
+end_date_period_2 <- "2024-11-01"
 
 # Second select the level of aggregation
 agg_level <- 'region'
 
 # Then compute the excess for overall (static, optimistic, pessimistic cases)
-excess_res_median <- f_counterfactuals(boostrapping_results_median, resp_var = 'cdr', agg_level = agg_level, 
-                                start_date_per_1 = start_date_period_1, 
-                                end_date_per_1 = end_date_period_1, 
-                                start_date_per_2 = start_date_period_2, 
-                                end_date_per_2 = end_date_period_2, 
-                                nb_boostrap=1000, type_model = 'glm')
+excess_res_median <- f_counterfactuals(boostrapping_results_median, resp_var = 'cdr', 
+                                        admin2_col='district',
+                                        agg_level = agg_level, 
+                                        start_date_per_1 = start_date_period_1, 
+                                        end_date_per_1 = end_date_period_1,
+                                        start_date_per_2 = start_date_period_2, 
+                                        end_date_per_2 = end_date_period_2, 
+                                        nb_boostrap=1000, type_model = 'glm')
 
-excess_res_pess <- f_counterfactuals(boostrapping_results_pess, resp_var = 'cdr', agg_level = agg_level, 
-                                       start_date_per_1 = start_date_period_1, 
-                                       end_date_per_1 = end_date_period_1, 
-                                       start_date_per_2 = start_date_period_2, 
-                                       end_date_per_2 = end_date_period_2, 
-                                       nb_boostrap=1000, type_model = 'glm')
+excess_res_u5_median <- f_counterfactuals(boostrapping_results_u5_median, 
+                                           resp_var = 'cdr_u5', 
+                                           agg_level = agg_level,
+                                           admin2_col='district',
+                                           start_date_per_1 = start_date_period_1,
+                                           end_date_per_1 = end_date_period_1,
+                                           start_date_per_2 = start_date_period_2,
+                                           end_date_per_2 = end_date_period_2,
+                                           nb_boostrap=1000, type_model = 'glm')
 
-excess_res_opt <- f_counterfactuals(boostrapping_results_opt, resp_var = 'cdr', agg_level = agg_level, 
-                                       start_date_per_1 = start_date_period_1, 
-                                       end_date_per_1 = end_date_period_1, 
-                                       start_date_per_2 = start_date_period_2, 
-                                       end_date_per_2 = end_date_period_2, 
-                                       nb_boostrap=1000, type_model = 'glm')
+excess_res_opt <- f_counterfactuals(boostrapping_results_opt, resp_var = 'cdr', 
+                                               admin2_col='district',
+                                               agg_level = agg_level, 
+                                               start_date_per_1 = start_date_period_1, 
+                                               end_date_per_1 = end_date_period_1,
+                                               start_date_per_2 = start_date_period_2, 
+                                               end_date_per_2 = end_date_period_2, 
+                                               nb_boostrap=1000, type_model = 'glm')
 
-# Then compute the excess for under 5 (static, optimistic, pessimistic cases)
-excess_res_u5_median <- f_counterfactuals(boostrapping_results_u5_median, resp_var = 'cdr_u5', agg_level = agg_level, 
-                                   start_date_per_1 = start_date_period_1, 
-                                   end_date_per_1 = end_date_period_1, 
-                                   start_date_per_2 = start_date_period_2, 
-                                   end_date_per_2 = end_date_period_2, 
-                                   nb_boostrap=1000, type_model = 'glm')
+excess_res_u5_opt <- f_counterfactuals(boostrapping_results_u5_opt, 
+                                                  resp_var = 'cdr_u5', 
+                                                  agg_level = agg_level,
+                                                  admin2_col='district',
+                                                  start_date_per_1 = start_date_period_1,
+                                                  end_date_per_1 = end_date_period_1,
+                                                  start_date_per_2 = start_date_period_2,
+                                                  end_date_per_2 = end_date_period_2,
+                                                  nb_boostrap=1000, type_model = 'glm')
 
-excess_res_u5_pess <- f_counterfactuals(boostrapping_results_u5_pess, resp_var = 'cdr_u5', agg_level = agg_level, 
-                                          start_date_per_1 = start_date_period_1, 
-                                          end_date_per_1 = end_date_period_1, 
-                                          start_date_per_2 = start_date_period_2, 
-                                          end_date_per_2 = end_date_period_2, 
-                                          nb_boostrap=1000, type_model = 'glm')
+excess_res_pess <- f_counterfactuals(boostrapping_results_pess, resp_var = 'cdr', 
+                                               admin2_col='district',
+                                               agg_level = agg_level, 
+                                               start_date_per_1 = start_date_period_1, 
+                                               end_date_per_1 = end_date_period_1,
+                                               start_date_per_2 = start_date_period_2, 
+                                               end_date_per_2 = end_date_period_2, 
+                                               nb_boostrap=1000, type_model = 'glm')
 
-excess_res_u5_opt <- f_counterfactuals(boostrapping_results_u5_opt, resp_var = 'cdr_u5', agg_level = agg_level, 
-                                          start_date_per_1 = start_date_period_1, 
-                                          end_date_per_1 = end_date_period_1, 
-                                          start_date_per_2 = start_date_period_2, 
-                                          end_date_per_2 = end_date_period_2, 
-                                          nb_boostrap=1000, type_model = 'glm')
+excess_res_u5_pess <- f_counterfactuals(boostrapping_results_u5_pess, 
+                                                  resp_var = 'cdr_u5', 
+                                                  agg_level = agg_level,
+                                                  admin2_col='district',
+                                                  start_date_per_1 = start_date_period_1,
+                                                  end_date_per_1 = end_date_period_1,
+                                                  start_date_per_2 = start_date_period_2,
+                                                  end_date_per_2 = end_date_period_2,
+                                                  nb_boostrap=1000, type_model = 'glm')
+
+
 
 #Merge OVerall and U5 for the different scenarios 
 clean_median_excess <- f_clean_counterfactuals_table(merge(excess_res_median, excess_res_u5_median, by=agg_level))

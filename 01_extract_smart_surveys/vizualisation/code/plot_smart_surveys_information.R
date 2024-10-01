@@ -87,7 +87,7 @@ plot_cdr <- ggplot(data, aes(y=lshtm_cdr_u5_est, x =as.character( year_recall_mi
         legend.text = element_text(size=28), axis.title.x = element_blank())+ 
   scale_y_continuous('Crude death rate under 5 (per 10.000 person-days)' , limits = c(0, NA))  +
   scale_fill_manual(name ='Type of Survey', labels = c("District", 'Livelihood Zone'), values =c("#56B4E9","#CC79A7"))
-ggsave('01_extract_smart_surveys/vizualisation/output/som_cdr_u5_per_year_type_survey.jpg',
+ggsave('01_extract_smart_surveys/vizualisation/output/som_cdr_u5_per_year_type_survey.png',
        dpi = "print", units = "cm", width = 30, height = 30)
 
 data <- data[which(data$year_recall_mid > 2014),]
@@ -99,7 +99,7 @@ plot_cdr <- ggplot(data, aes(y=lshtm_cdr_est, x =as.character( year_recall_mid),
         legend.text = element_text(size=28), axis.title.x = element_blank())+ 
   scale_y_continuous('Crude death rate (per 10.000 person-days)' , limits = c(0, NA))  +
   scale_fill_manual(name ='Type of Survey', labels = c("District", 'Livelihood Zone'), values =c("#56B4E9","#CC79A7"))
-ggsave('01_extract_smart_surveys/vizualisation/output/som_cdr_per_year_type_survey.jpg',
+ggsave('01_extract_smart_surveys/vizualisation/output/som_cdr_per_year_type_survey.png',
        dpi = "print", units = "cm", width = 30, height = 30)
 
 ### Plot CDR - type of idps
@@ -110,7 +110,7 @@ plot_cdr <- ggplot(data, aes(y=lshtm_cdr_est, x =as.character( year_recall_mid),
                                       axis.title.y = element_text(size=24),axis.text.y = element_text(size=20), legend.position="top", legend.title = element_text(size=28),
         legend.text = element_text(size=28), axis.title.x = element_blank())+ 
   scale_y_continuous('Crude death rate (per 10.000 person-days)' , limits = c(0, NA))  +
-  scale_fill_manual(name ='Type of Survey', labels = c("IDP", 'Others'), values =c("#E69F00","#D55E00")) 
+  scale_fill_manual(name ='Surveyed Population', labels = c("IDP", 'Others'), values =c("#E69F00","#D55E00")) 
 ggsave('01_extract_smart_surveys/vizualisation/output/som_cdr_per_year_type_idp.jpg',
        dpi = "print", units = "cm", width = 30, height = 30)
 
@@ -123,7 +123,7 @@ plot_cdr <- ggplot(data, aes(y=lshtm_cdr_u5_est, x =as.character( year_recall_mi
         axis.text.y = element_text(size=20), legend.position="top", legend.title = element_text(size=28),
         legend.text = element_text(size=28), axis.title.x = element_blank())+ 
   scale_y_continuous('Crude death rate under 5 (per 10.000 person-days)' , limits = c(0, NA))  +
-  scale_fill_manual(name ='Type of Survey', labels = c("IDP", 'Others'), values =c("#E69F00","#D55E00")) 
+  scale_fill_manual(name ='Surveyed Population', labels = c("IDP", 'Others'), values =c("#E69F00","#D55E00")) 
 ggsave('01_extract_smart_surveys/vizualisation/output/som_cdr_u5_per_year_type_idp.jpg',
        dpi = "print", units = "cm", width = 30, height = 30)
 

@@ -102,18 +102,28 @@ data_coverage['hh_weights'][which(is.na(data_coverage$hh_weights)), ] <- 0
 time_unit_data <- subset(time_unit_data, year >= 2015 & year < 2024)
 data_coverage <- subset(data_coverage, year >= 2015 & year <2024)
 
-plot <- ggplot(data_coverage, aes(x = time_unit, y = district) )
-plot <- plot + geom_tile(aes(fill=data_availability), colour = "grey80", show.legend = FALSE) +
-  scale_x_continuous("month, year", expand=c(0,0), breaks = unique(time_unit_data[, c("time_unit", "month")])[, "time_unit"], 
-                     labels = time_unit_data$month ) +
-  scale_y_discrete(unique(admin2$district), expand=c(0,0) ) +
-  scale_fill_gradientn(colours = c("grey90", "yellow", "red"),
-                       values = c(0, 0.0000001, 1 )) +
-  facet_grid(region~year, space="free", scales="free", switch="x") +
-  theme_bw() +
-  theme(strip.placement = "outside",
-        strip.background = element_rect(fill=NA, colour="white"),
-        panel.spacing=unit(0,"cm"), strip.text.y = element_text(angle = 0))
+
+plot <- ggplot2::ggplot(data_coverage, ggplot2::aes(x = time_unit, y = region) )
+plot <- plot + ggplot2::geom_tile(ggplot2::aes(fill=data_availability), colour = "grey80", show.legend = FALSE) +
+  ggplot2::scale_x_continuous("month, year", expand=c(0,0), 
+                              breaks = unique(time_unit_data[, c("time_unit", "month")])[, "time_unit"], 
+                              labels = time_unit_data$month ) +
+  ggplot2::scale_y_discrete(unique(admin2$district), expand=c(0,0) ) +
+  ggplot2::scale_fill_gradientn(colours = c("grey90", "yellow", "red"),
+                                values = c(0, 0.0000001, 1 )) +
+  ggplot2::facet_grid(district~year, space="free", scales="free", switch="x") +
+  ggplot2::theme_bw() +
+  ggplot2::theme(strip.placement = "outside",
+                 strip.background = ggplot2::element_rect(fill=NA, colour="white"),
+                 panel.spacing=ggplot2::unit(0,"cm"), 
+                 panel.border = ggplot2::element_blank(), # Remove panel border
+                 #strip.text.y = ggplot2::element_text(angle = 0, size = 16),
+                 strip.text.y = ggplot2::element_blank(),
+                 axis.title.y = ggplot2::element_blank(),
+                 axis.title.x = ggplot2::element_text(size=15),
+                 axis.text.y = ggplot2::element_text(size=20), 
+                 axis.text.x = ggplot2::element_text(size=10),
+                 strip.text.x = ggplot2::element_text(size=15))
 
 plot
 ggsave('01_extract_smart_surveys/vizualisation/output/som_coverage.png', height = 35, width = 30, units = "cm", dpi = "print")
@@ -123,6 +133,28 @@ data_coverage_region <- aggregate(data_coverage$data_availability,
                                           time_unit=data_coverage$time_unit, year=data_coverage$year, month=data_coverage$month),
                                   FUN=sum)
 colnames(data_coverage_region)[length(data_coverage_region)] <- 'data_availability'
+
+plot <- ggplot2::ggplot(data_coverage_region, ggplot2::aes(x = time_unit, y = region) )
+plot <- plot + ggplot2::geom_tile(ggplot2::aes(fill=data_availability), colour = "grey80", show.legend = FALSE) +
+  ggplot2::scale_x_continuous("month, year", expand=c(0,0), 
+                              breaks = unique(time_unit_data[, c("time_unit", "month")])[, "time_unit"], 
+                              labels = time_unit_data$month ) +
+  ggplot2::scale_y_discrete(unique(admin2$region), expand=c(0,0) ) +
+  ggplot2::scale_fill_gradientn(colours = c("grey90", "yellow", "red"),
+                                values = c(0, 0.0000001, 1 )) +
+  facet_grid(region~year, space="free", scales="free", switch="both") +
+  ggplot2::theme_bw() +
+  ggplot2::theme(strip.placement = "outside",
+                 strip.background = element_rect(colour = 'black', fill='white'),
+                 panel.spacing=ggplot2::unit(0,"cm"), 
+                 panel.border = ggplot2::element_blank(), # Remove panel border
+                 #strip.text.y = ggplot2::element_text(angle = 0, size = 16),
+                 strip.text.y = ggplot2::element_blank(),
+                 axis.title.y = ggplot2::element_blank(), 
+                 strip.text.x = element_text(angle=90), 
+                 axis.text.x = element_blank(),
+                 axis.ticks = element_blank())
+
 plot <- ggplot(data_coverage_region, aes(x = time_unit, y = region) )
 plot <- plot + geom_tile(aes(fill=data_availability), colour = "grey80", show.legend = FALSE) +
   scale_x_continuous("month, year", expand=c(0,0), breaks = unique(time_unit_data[, c("time_unit", "month")])[, "time_unit"], 
@@ -135,10 +167,11 @@ plot <- plot + geom_tile(aes(fill=data_availability), colour = "grey80", show.le
                      strip.background = element_rect(colour = 'black', fill='white'),
                      panel.spacing = unit(0, 'cm'), 
                      axis.text.x = element_blank(),
-                     strip.text.x = element_text(angle=90),
+                     axis.text.y = element_text(size=rel(3)),
+                     strip.text.x = element_text(angle=90,size = rel(2)),
                      axis.title = element_blank(),
                      axis.title.y = element_blank(),
                      axis.ticks = element_blank())
 
 plot
-ggsave('01_extract_smart_surveys/vizualisation/output/som_coverage_region.png', height = 35, width = 30, units = "cm", dpi = "print")
+ggsave('01_extract_smart_surveys/vizualisation/output/som_coverage_region.png', height = 20, width = 15, units = "cm", dpi = "print")

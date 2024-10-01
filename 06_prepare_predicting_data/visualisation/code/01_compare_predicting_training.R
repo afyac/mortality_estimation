@@ -1,26 +1,8 @@
 # Install or load required R packages-------------------------------------------
-pacman::p_load(
-  boot,        # Too compute model diagnostics
-  broom,       # For wrangling tables of models
-  ggalt,       # For fancy dumbbell plots
-  ggcorrplot,  # For correlation matrix plotting
-  ggplot2,     # Data visualization
-  ggpubr,      # Arranging multiple plots into a single plot
-  lubridate,   # Makes it easier to work with dates and times
-  mast,        # Matching administrative names and geospatial operations
-  scales,      # Scaling and formatting data for visualizations
-  tidyverse,   # Tidyverse suite of packages
-  zoo,         # For computing running means
-  bnlearn,     # For Bayesian Networks
-  rio,         # For importing files
-  pbmcapply,   # For parallel computing 
-  plotly)      # Interactive plot
-
-
 # Function to process datasets
 process_data <- function(data) {
   data <-  data|> 
-    mutate(
+    dplyr::mutate(
       acled_event_rate = ifelse(acled_event_rate == 0, "0", "> 0"),
       acled_event_rate = factor(acled_event_rate, levels = c("0", "> 0"))
     ) |> 
@@ -46,7 +28,7 @@ process_data <- function(data) {
 # Training data (household mortality observations matched with predictors)
 training_data <- rio::import('05_prepare_training_data/output/som_training_data.rds') |> 
   # Create crude death rate
-  mutate(
+  dplyr::mutate(
     cdr = n_died  / p_time,
     cdr_u5 = n_died_u5  / p_time_u5)
 
@@ -57,9 +39,9 @@ predictor_data <- rio::import('06_prepare_predicting_data/output/som_predicting_
 
 process_data <- function(data_source) {
   data_source %>%
-    group_by(date) %>%
-    summarise(
-      across(
+    dplyr::group_by(date) %>%
+    dplyr::summarise(
+      dplyr::across(
         c(acled_event_rate_scn, sam_admissions_rate_lag1_scn, 
           tot_wage_cereal_smooth_lag3_scn, 
           tot_goat_cereal_smooth_lag3_scn, 
@@ -69,24 +51,24 @@ process_data <- function(data_source) {
       )
     ) %>%
     tidyr::pivot_longer(cols = -c(date)) |> 
-    ungroup()
+    dplyr::ungroup()
 }
 
 data_train <- process_data(training_data)
 
 data_comb <- process_data(predictor_data) %>%
-  left_join(
+  dplyr::left_join(
     data_train, suffix = c("_pred", "_train"),
     by = c("date", "name")
   ) %>%
-  pivot_longer(cols = c(value_pred, value_train), 
+  tidyr::pivot_longer(cols = c(value_pred, value_train), 
                names_to = "type", 
-               values_to = "value") |> ungroup()
+               values_to = "value") |> dplyr::ungroup()
 
 
-ggplot(data_comb, aes(y=value, x=date, color = type, na.rm = TRUE)) +
-  facet_wrap(~name, scales = "free") +geom_line() +
-  theme_bw() + theme(axis.text.x = element_text(angle = 45, vjust = 0.2, hjust=0.1), 
-                     strip.text = element_text(size = 5))
-ggsave('06_prepare_predicting_data/visualisation/output/som_comparison_training_predicting.png',
+ggplot2::ggplot(data_comb, ggplot2::aes(y=value, x=date, color = type, na.rm = TRUE)) +
+  ggplot2::facet_wrap(~name, scales = "free") + ggplot2::geom_line() +
+  ggplot2::theme_bw() + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, vjust = 0.2, hjust=0.1), 
+                     strip.text = ggplot2::element_text(size = 5))
+ggplot2::ggsave('06_prepare_predicting_data/visualisation/output/som_comparison_training_predicting.png',
        dpi = "print", units = "cm", width = 30, height = 30)

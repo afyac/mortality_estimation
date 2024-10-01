@@ -1,0 +1,6 @@
+"mse","rmse","bias_rel","sd_rmse","variable"
+0.0199469799426935,0.141080834046673,0.00749430871914117,0.00692645551398794,"cdi_lag5_scn, measles_cases_rate_cat, malaria_cases_rate_cat, sam_admissions_rate_lag1_scn"
+0.0199461580638761,0.141077893631853,0.00870240127519561,0.00692707989428123,"cdi_lag5_scn, measles_cases_rate_cat, malaria_cases_rate_cat"
+0.0199525822498886,0.141100735823663,0.00580834220180599,0.00692536400243009,"cdi_lag5_scn, measles_cases_rate_cat, sam_admissions_rate_lag1_scn"
+0.019941100721368,0.141060525416812,0.00327156503135858,0.0069144687673245,"cdi_lag5_scn, malaria_cases_rate_cat, sam_admissions_rate_lag1_scn"
+0.0199480522927779,0.141082987792899,0.00659209861295853,0.00696362359427264,"measles_cases_rate_cat, malaria_cases_rate_cat, sam_admissions_rate_lag1_scn"

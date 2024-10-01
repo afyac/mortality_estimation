@@ -75,11 +75,11 @@ return_cluster_data <- function(read_lines_file, settlement_file, lhz){
   colnames(clusters_data) <- c('settlements', 'pop', 'nb_cluster')
   clusters_data <- dplyr::select(clusters_data, c('settlements', 'nb_cluster'))
   clusters_data[which(clusters_data$nb_cluster == ""),]$nb_cluster <- NA
-  clusters_data <- drop_na(clusters_data)
+  clusters_data <- tidyr::drop_na(clusters_data)
   clusters_data$settlements <- tolower(clusters_data$settlements)
-  clusters_data$settlements <- str_replace_all(clusters_data$settlements , "[[:punct:]]", "")
-  clusters_data$settlements <- str_replace_all(clusters_data$settlements , "[[:space:]]", "")
-  clusters_data$settlements <- str_replace_all(clusters_data$settlements , "[[:digit:]]+", "")
+  clusters_data$settlements <- stringr::str_replace_all(clusters_data$settlements , "[[:punct:]]", "")
+  clusters_data$settlements <- stringr::str_replace_all(clusters_data$settlements , "[[:space:]]", "")
+  clusters_data$settlements <- stringr::str_replace_all(clusters_data$settlements , "[[:digit:]]+", "")
 
   settlement_file$SETTLEMENT <- tolower(gsub("[[:punct:][:blank:]]+", "", iconv(settlement_file$SETTLEMENT,"WINDOWS-1252","UTF-8")))
   settlement_file$DISTRICT <- tolower(gsub("[[:punct:][:blank:]]+", "", iconv(settlement_file$DISTRICT,"WINDOWS-1252","UTF-8")))
@@ -100,7 +100,7 @@ return_cluster_data <- function(read_lines_file, settlement_file, lhz){
   if(nrow(clusters_data) ==0){return(data.frame())}
   colnames(clusters_data) <- c('settlements', 'nb_cluster', 'district', 'lhz')
 
-  clusters_data <- drop_na(clusters_data)
+  clusters_data <- tidyr::drop_na(clusters_data)
   return(clusters_data)
 }
 

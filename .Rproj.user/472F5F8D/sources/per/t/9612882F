@@ -1,0 +1,26 @@
+{
+    "id": "9612882F",
+    "path": "~/Somalia/som_mortality_estimation/08_define_final_model/code/03_som_counterfactuals.R",
+    "project_path": "08_define_final_model/code/03_som_counterfactuals.R",
+    "type": "r_source",
+    "hash": "2819383485",
+    "contents": "",
+    "dirty": false,
+    "created": 1724771711376.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "98,77",
+        "scrollLine": "79"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1724771968,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1724771968106,
+    "read_only": false,
+    "read_only_alternatives": []
+}

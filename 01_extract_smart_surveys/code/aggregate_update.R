@@ -23,7 +23,7 @@ aggregate_output_update <- function(dir_path){
   while(length(files) > 1){ ##because of the metadata file
     file_name_path <- paste(dir_path, 'admin2_surveys/aggregate_surveys/csv_files/', files[2], sep="")
     if(is.na(match(files[2], 'metadata.csv'))){
-      metadata <- metadata_file[metadata_file$SurveyID == str_split(files[2], fixed('.csv'))[1][[1]][1],]
+      metadata <- metadata_file[metadata_file$SurveyID == stringr::str_split(files[2], stringr::fixed('.csv'))[1][[1]][1],]
       df <- read.csv(paste(dir_path, 'admin2_surveys/aggregate_surveys/csv_files/', files[2], sep=""))
       if(nrow(df)!=1){
         new_data <- clean_data_aggregate(df, metadata)
@@ -61,7 +61,7 @@ clean_data_aggregate <- function(data, metadata){
   colnames(data) <- c("HH", "Cluster", "n", "n_u5" ,"n_join", "n_join_u5", "n_left", "n_left_u5", "n_born", "n_died", "n_died_u5")
   data <- subset(data, data$n >= data$n_join + data$n_born + data$n_join_u5 +  data$n_u5 - data$n_died - data$n_died_u5 - data$n_left - data$n_left_u5)
   data <- apply(data, c(1,2), as.character)
-  data <- as.data.frame(apply(t(data), 1, parse_vector, col_integer() ))
+  data <- as.data.frame(apply(t(data), 1, readr::parse_vector, readr::col_integer() ))
   if (length(unique(data$Cluster)) > 1) { data <- subset(data, ! is.na(Cluster) ) }
   data[is.na(data)] <- 0
   recall_period <- metadata$Recall_Days
@@ -95,21 +95,21 @@ update_metadata_aggregate <-function(new_data, metadata){
 
   if(length(unique(new_data$Cluster)) == 1 | length(unique(new_data$Cluster)) == 0){
     metadata_up$lshtm_survey_design <- "SRS or exhaustive"
-    survey_design <- svydesign(id = ~0, data = subset(new_data, p_time > 0) )
-    survey_design_u5 <- svydesign(id = ~0, data = subset(new_data, p_time_u5 > 0))
+    survey_design <- survey::svydesign(id = ~0, data = subset(new_data, p_time > 0) )
+    survey_design_u5 <- survey::svydesign(id = ~0, data = subset(new_data, p_time_u5 > 0))
   }else{
     metadata_up$lshtm_survey_design <- "multi-stage cluster"
-    survey_design <- svydesign(id = ~Cluster, data = subset(new_data, p_time > 0) )
-    survey_design_u5 <- svydesign(id = ~Cluster, data = subset(new_data, p_time_u5 > 0))
+    survey_design <- survey::svydesign(id = ~Cluster, data = subset(new_data, p_time > 0) )
+    survey_design_u5 <- survey::svydesign(id = ~Cluster, data = subset(new_data, p_time_u5 > 0))
   }
 
-  fit <- svyglm(n_died~NULL, survey_design, family="poisson", offset=log(p_time) )
+  fit <- survey::svyglm(n_died~NULL, survey_design, family="poisson", offset=log(p_time) )
   metadata_up$lshtm_cdr_est <- exp(summary(fit)$coefficients[[1]])* 10000
   metadata_up$lshtm_cdr_log_se <- summary(fit)$coefficients[[2]]
   metadata_up$lshtm_cdr_lci <- exp(summary(fit)$coefficients[[1]] - 1.96 * summary(fit)$coefficients[[2]] ) * 10000
   metadata_up$lshtm_cdr_uci <- exp(summary(fit)$coefficients[[1]] + 1.96 * summary(fit)$coefficients[[2]] ) * 10000
 
-  fit <- svyglm(n_died_u5~NULL, survey_design_u5, family="poisson", offset=log(p_time_u5) )
+  fit <- survey::svyglm(n_died_u5~NULL, survey_design_u5, family="poisson", offset=log(p_time_u5) )
   metadata_up$lshtm_cdr_u5_est <- exp(summary(fit)$coefficients[[1]] ) * 10000
   metadata_up$lshtm_cdr_u5_log_se <- summary(fit)$coefficients[[2]]
   metadata_up$lshtm_cdr_u5_lci <- exp(summary(fit)$coefficients[[1]] - 1.96 * summary(fit)$coefficients[[2]] ) * 10000
@@ -131,13 +131,13 @@ update_metadata_aggregate <-function(new_data, metadata){
   metadata_up$lshtm_cdr_inj_est <- NA
 
 
-  fit <- svyglm(n_born~NULL, survey_design, family="poisson", offset=log(p_time) )
+  fit <- survey::svyglm(n_born~NULL, survey_design, family="poisson", offset=log(p_time) )
   metadata_up$lshtm_cbr_est <- exp(summary(fit)$coefficients[[1]] ) * 1000 * 365
 
-  fit <- svyglm(n_join~NULL, survey_design, family="poisson", offset=log(p_time) )
+  fit <- survey::svyglm(n_join~NULL, survey_design, family="poisson", offset=log(p_time) )
   metadata_up$lshtm_in_migration_rate_est  <- exp(summary(fit)$coefficients[[1]] ) * 1000 * 365
 
-  fit <- svyglm(n_left~NULL, survey_design, family="poisson", offset=log(p_time) )
+  fit <- survey::svyglm(n_left~NULL, survey_design, family="poisson", offset=log(p_time) )
   metadata_up$lshtm_out_migration_rate_est  <- exp(summary(fit)$coefficients[[1]] ) * 1000 * 365
 
   metadata_up$lshtm_net_migration_rate_est <- metadata_up$lshtm_in_migration_rate_est -

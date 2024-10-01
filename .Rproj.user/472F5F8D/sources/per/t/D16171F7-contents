@@ -1,0 +1,52 @@
+END_DATE_ANALYSIS <- '2024-06-01'
+# Load data - complete one 
+res_data <-  rio::import('08_define_final_model/output/som_final_toll_dr.rds')
+res_data_u5 <- rio::import('08_define_final_model/output/som_final_toll_dr_u5.rds')
+
+# Plot country results
+# overall
+samrat::f_country_dr_plot(res_data, resp_var='cdr')
+
+# under 5
+samrat::f_country_dr_plot(res_data_u5, resp_var = 'cdr_u5')
+
+# Plot Map
+# First need to aggreaget the data per district and select the date
+# Load boostrapping 
+boostrapping_results <-  rio::import('08_define_final_model/output/som_boostraping_data.rds') |>
+  dplyr::filter(date >= '2023-01-01' & date <= END_DATE_ANALYSIS)
+boostrapping_results_u5 <- rio::import('08_define_final_model/output/som_boostraping_data_u5.rds')|>
+  dplyr::filter(date >= '2023-01-01' & date <= END_DATE_ANALYSIS)
+
+# Generate the results with mean, low and upper data per district
+final_res_dist <- samrat::f_generate_final_results(boostrapping_results, agg_level = 'district', 
+                                      nb_boostrap = 1000, resp_var = 'cdr')
+final_res_dist_u5 <- samrat::f_generate_final_results(boostrapping_results_u5, agg_level = 'district', 
+                                           nb_boostrap = 1000, resp_var = 'cdr_u5')
+
+# # Generate the map
+samrat::f_cdr_map(final_res_dist, 'cdr')
+f_cdr_map(final_res_dist_u5, 'cdr_u5')
+
+
+## Plot Map with CI
+
+boostrapping_results <-  rio::import('08_define_final_model/output/som_boostraping_data.rds')
+boostrapping_results_u5 <- rio::import('08_define_final_model/output/som_boostraping_data_u5.rds')
+
+samrat::f_plot_country_plot_with_boostrap(boostrapping_results, path_output = '08_define_final_model/visualisation/output/',
+                                          name_output ='glm_res_final_pop_runs', resp_var='n_died', 
+                                  start_date_cf_a = "2015-01-01", 
+                                  end_date_cf_a = "2016-06-01", start_date_cf_b = "2020-01-01", 
+                                  end_date_cf_b = "2021-06-01", cf_b_label = "2015-16 counterfactual", 
+                                  cf_a_label = "2020 counterfactual")
+
+samrat::f_plot_country_plot_with_boostrap(boostrapping_results_u5, name_output ='glm_res_final_u5_pop_runs', resp_var='n_died_u5', 
+                                  start_date_cf_a = "2015-01-01",path_output = '08_define_final_model/visualisation/output/',
+                                  end_date_cf_a = "2016-06-01", start_date_cf_b = "2020-01-01", 
+                                  end_date_cf_b = "2021-06-01", cf_b_label = "2015-16 counterfactual", 
+                                  cf_a_label = "2020 counterfactual")
+
+
+# Generate results for Banadir
+## TO BE DONE

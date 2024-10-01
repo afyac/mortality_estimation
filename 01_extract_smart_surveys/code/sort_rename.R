@@ -126,7 +126,7 @@ rename_file <- function(file_name, file){
   pos <- grep("\\Planning:", read_lines_file, ignore.cas=TRUE, useBytes = TRUE)
   pos2 <- grep("Cluster", read_lines_file, ignore.cas=TRUE)[2]
   # Concatenate those information with the one obtained in the file name
-  fileName <- lapply(strsplit(str_split(file, stringr::fixed('.as'))[[1]], "_|/| "), tolower)[[1]]
+  fileName <- lapply(strsplit(stringr::str_split(file, stringr::fixed('.as'))[[1]], "_|/| "), tolower)[[1]]
   name <- lapply(strsplit(read_lines_file[(pos+1):(pos2-1)], "_|/| "), tolower)[[1]]
   name <- c(fileName, name)
   name <- name[name!=""]

@@ -29,18 +29,22 @@ update_district <- function(dir_path){
     metadata['Quality_Score'][ind,] <- hh_obs[which(hh_obs$surveyId == metadata['SurveyID'][ind,]),]$qualityScore[1]
   }
   #Change LHZ variable into idp or other
-  metadata <- metadata |> mutate(LHZ = replace(LHZ, LHZ %in% c('idp', 'idps'), 'idp'),
+  metadata <- metadata |> dplyr::mutate(LHZ = replace(LHZ, LHZ %in% c('idp', 'idps'), 'idp'),
                                  LHZ = replace(LHZ, LHZ != 'idp' | is.na(LHZ), 'other'))
   ##Modify the date when there are some issues -- Kind of a manual part
-  metadata$Start_Date <- ifelse(abs(year(as.Date(metadata$Start_Date)) - year(as.Date(metadata$End_Date))) == 10, as.character(as.Date(metadata$Start_Date) + years(10)), metadata$Start_Date)
-  metadata$Start_Date <- ifelse(abs(year(as.Date(metadata$Start_Date)) - year(as.Date(metadata$End_Date))) == 20, as.character(as.Date(metadata$Start_Date) + years(20)), metadata$Start_Date)
-  if(length(metadata['End_Date'][which(year(as.Date(metadata$End_Date))  == 2024),] != 0)){
-    metadata['End_Date'][which(year(as.Date(metadata$End_Date)) == 2024),] <- as.character(as.Date(metadata['End_Date'][which(year(as.Date(metadata$End_Date))  == 2024),]) %m-% years(1))
+  metadata$Start_Date <- ifelse(abs(lubridate::year(as.Date(metadata$Start_Date)) - 
+                                      lubridate::year(as.Date(metadata$End_Date))) == 10, 
+                                as.character(as.Date(metadata$Start_Date) + lubridate::years(10)), metadata$Start_Date)
+  metadata$Start_Date <- ifelse(abs(lubridate::year(as.Date(metadata$Start_Date)) - 
+                                      lubridate::year(as.Date(metadata$End_Date))) == 20, 
+                                as.character(as.Date(metadata$Start_Date) + lubridate::years(20)), metadata$Start_Date)
+  if(length(metadata['End_Date'][which(lubridate::year(as.Date(metadata$End_Date))  == 2024),] != 0)){
+    metadata['End_Date'][which(lubridate::year(as.Date(metadata$End_Date)) == 2024),] <- as.character(as.Date(metadata['End_Date'][which(lubridate::year(as.Date(metadata$End_Date))  == 2024),]) - lubridate::years(1))
   }
-  metadata$End_Date[which(as.Date(year(as.Date(metadata$End_Date)),origin="1970-01-01") == 2023 & month(as.Date(metadata$End_Date)) > 5)] <- metadata$Start_Date[which(as.Date(lubridate::year(as.Date(metadata$End_Date, origin="1970-01-01")),origin="1970-01-01") == 2023 & lubridate::month(as.Date(metadata$End_Date,origin="1970-01-01")) > 5)]
+  metadata$End_Date[which(as.Date(lubridate::year(as.Date(metadata$End_Date)),origin="1970-01-01") == 2023 & lubridate::month(as.Date(metadata$End_Date)) > 5)] <- metadata$Start_Date[which(as.Date(lubridate::year(as.Date(metadata$End_Date, origin="1970-01-01")),origin="1970-01-01") == 2023 & lubridate::month(as.Date(metadata$End_Date,origin="1970-01-01")) > 5)]
   metadata$Start_Date[which(abs(as.Date(metadata$Start_Date) - as.Date(metadata$End_Date)) > 360)] <- metadata$End_Date[which(abs(as.Date(metadata$Start_Date) - as.Date(metadata$End_Date)) > 360)]
-  metadata$Start_Date[which(year(as.Date(metadata$Start_Date)) == 2008)] <- as.character(as.Date('2019/06/17'))
-  metadata$End_Date[which(year(as.Date(metadata$End_Date)) == 2008)] <- as.character(as.Date('2019/06/17'))
+  metadata$Start_Date[which(lubridate::year(as.Date(metadata$Start_Date)) == 2008)] <- as.character(as.Date('2019/06/17'))
+  metadata$End_Date[which(lubridate::year(as.Date(metadata$End_Date)) == 2008)] <- as.character(as.Date('2019/06/17'))
   
   ## Check Redundancy
   # ind <- which(duplicated(metadata[c('District', 'Region', 'LHZ', 'Start_Date', 'End_Date', 'Recall_Days', 'Quality_Score')]))

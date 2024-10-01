@@ -1,0 +1,26 @@
+{
+    "id": "7A250D90",
+    "path": "~/Somalia/som_mortality_estimation/04_process_predictors/visualisation/code/01_som_plot_predictors.R",
+    "project_path": "04_process_predictors/visualisation/code/01_som_plot_predictors.R",
+    "type": "r_source",
+    "hash": "521625020",
+    "contents": "",
+    "dirty": false,
+    "created": 1727086360642.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "30,27",
+        "scrollLine": "21"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1726580448,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1726580448,
+    "read_only": false,
+    "read_only_alternatives": []
+}

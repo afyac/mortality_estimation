@@ -39,7 +39,7 @@ ui <- fluidPage(
                      p("The first curve displayed corresponds to the forecast mortality trend under default scenarios (median and 97.5% percentile of last 6 months predictor data)."),
                      strong("Scenarios Tab"),
                      p("In the last tab, 'Scenarios,' you can modify the values of different predictors to see their impact on the forecasted mortality trend"),
-                     div("For example, if you set the 'Malnutrition Incident' to increase by 0.5, the incident will increase by 0.1 each month, reaching a total increase of 0.5 by the last month of the forecasting period.", style = "color:green")
+                     div("For example, if you set the 'Incidence of Malnutrition Admissions' to increase by 0.5, the incident will increase by 0.1 each month, reaching a total increase of 0.5 by the last month of the forecasting period.", style = "color:green")
                    )
                    )),
         tabPanel("Import data", 
@@ -54,8 +54,8 @@ ui <- fluidPage(
           wellPanel(
             uiOutput('start_date')),
             wellPanel(radioButtons("type_plot", "Age Groups:",
-                         c("All Age Crude Death Rate" = "overall",
-                           "Under 5s year Crude Death Rate" = "under5"))
+                         c("All Age" = "overall",
+                           "Children Under 5y old" = "under5"))
             ),
           wellPanel(
               radioButtons("level_plot", "Geographic Level:",
@@ -89,7 +89,7 @@ ui <- fluidPage(
             textOutput('malaria_rate'),
             br(),
             sliderInput(inputId = "perc_sam",
-                        label = "Manultrition Incident (per 100,000 pop.):",
+                        label = "Incidence of Malnutrition Admissions (per 100,000 pop.):",
                         min = -1,
                         max = 1,
                         value = 0,

@@ -12,7 +12,8 @@ admin2_survey_to_csv <- function(dir_name){
 
   log_file <- read.csv(paste(dir_path, 'backup_folder/log_file.csv', sep=""))
   ##Upload files to be transform into csv
-  files <- list.files(paste(dir_path, 'admin2_surveys/individual_surveys/smart_surveys/', sep=""), pattern='\\.as$')
+  files <- list.files(paste(dir_path, 'admin2_surveys/individual_surveys/smart_surveys/', sep=""), 
+                      pattern='\\.as$')
   while(identical(files, character(0)) == FALSE){
     file_name_path <- paste(dir_path, 'admin2_surveys/individual_surveys/smart_surveys/', files[1], sep="")
     new_name <- log_file[match(files[1], log_file$SMART_Survey_Name),]$CSV_Name
@@ -44,7 +45,8 @@ generate_csv_individual <- function(read_lines_file, new_name){
   colnames(df) <- df[1,]
   df <- df[-1, ]
   if(nrow(df) > 1){
-    write.csv(df, paste(dir_path, 'admin2_surveys/individual_surveys/csv_files/', new_name, '.csv', sep=""), row.names = FALSE)
+    write.csv(df, paste(dir_path, 'admin2_surveys/individual_surveys/csv_files/', 
+                        new_name, '.csv', sep=""), row.names = FALSE)
   }
   return(nrow(df))
 }

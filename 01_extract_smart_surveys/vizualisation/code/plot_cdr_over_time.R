@@ -31,9 +31,9 @@ data <- merge(hh_obs, metadata, by.x='surveyId', by.y='SurveyID', all.x=TRUE)
 
 ## Generate time_units and calculate time unit start and end and also mid time period for the different houshold
 y_start <- 2014
-y_end <- 2023
+y_end <- 2024
 m_start <- 1
-m_end <- 12
+m_end <- 1
 burn_in_period <- 1 # by how many years to extend period backwards (useful for lags)
 burn_out_period <- 0 # by how many years to extend period forward
 when <- list(y_start, y_end, m_start, m_end, burn_in_period, burn_out_period)

@@ -25,7 +25,7 @@ lhz_output_update <- function(dir_path){
     file_name_path <- paste(dir_path, 'lhz_surveys/individual_surveys/csv_files/', files[2], sep="")
     cluster_name_path <- paste(dir_path, 'lhz_surveys/individual_surveys/csv_files/', files[3], sep="")
     if(is.na(match(files[2], 'metadata.csv'))){
-      metadata <- metadata_file[metadata_file$SurveyID == str_split(files[2], fixed('.csv'))[1][[1]][1],]
+      metadata <- metadata_file[metadata_file$SurveyID == stringr::str_split(files[2], stringr::fixed('.csv'))[1][[1]][1],]
 
       df <- read.csv(paste(dir_path, 'lhz_surveys/individual_surveys/csv_files/', files[2], sep=""))
       if(sum(df$P1_age, na.rm = TRUE) != 0){
@@ -96,8 +96,8 @@ clean_data_lhz <- function(data, metadata){
   data[which(is.na(data$Born)), 'Born'] <- 0
   data[which(is.na(data$Cause)), 'Cause'] <- 0
   data['eligeable'] <- ifelse(is.na(data$Sex) == FALSE & is.na(data$Age) == FALSE, 1, 0)
-  results <- data[which(data$eligeable == 1),] %>% group_by(newIndex) %>%
-    summarise(n = sum(eligeable), n_m = sum(Sex), n_f = sum(Sex == 0), n_u5 = sum(Age < 5),
+  results <- data[which(data$eligeable == 1),] |> dplyr::group_by(newIndex) |>
+    dplyr::summarise(n = sum(eligeable), n_m = sum(Sex), n_f = sum(Sex == 0), n_u5 = sum(Age < 5),
               n_5 = sum(Age == 5), n_u5_m = sum(Age < 5 & Sex), n_u5_f = sum(Age <5 & Sex == 0),
               n_join = sum(Join), n_join_m = sum(Join & Sex), n_join_f = sum(Join&Sex==0),
               n_join_u5=sum(Join & Age <5), n_join_5 = sum(Join & Age == 5),
@@ -119,7 +119,7 @@ clean_data_lhz <- function(data, metadata){
               p_time_u5 = (n_u5 - 0.5 * n_join_u5 + 0.5 * n_left_u5 - 0.5 * n_born + 0.5 * n_died_u5) * recall_period +
                 (n_5 - 0.5 * n_join_5 + 0.5 * n_left_5 + 0.5 * n_died_5 ) * recall_period / 365
     )
-  results <- results %>% separate_wider_delim(newIndex, '_', names=c('Cluster', 'HH'))
+  results <- results |> tidyr::separate_wider_delim(newIndex, '_', names=c('Cluster', 'HH'))
   results$surveyId <- metadata[which(!is.na(metadata$SurveyID)),]$SurveyID
   if(length(metadata[which(!is.na(metadata$Quality_Score)),]$Quality_Score) ==0){
     results$qualityScore <- 1

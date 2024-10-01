@@ -19,9 +19,9 @@ calcul_quality_score <- function(read_lines_file){
               "WEIGHT","HEIGHT","EDEMA","MUAC","WAZ" ,"HAZ" ,"WHZ")]
   df[, c("MONTHS","WEIGHT","HEIGHT","MUAC","WAZ" ,"HAZ" ,"WHZ", 'CLUSTER')] <- sapply(df[, c("MONTHS","WEIGHT","HEIGHT","MUAC","WAZ" ,"HAZ" ,"WHZ", 'CLUSTER')], function(x) gsub(",", ".", x))
   df[, c("MONTHS","WEIGHT","HEIGHT","MUAC","WAZ" ,"HAZ" ,"WHZ", 'CLUSTER')] <- sapply(df[, c("MONTHS","WEIGHT","HEIGHT","MUAC","WAZ" ,"HAZ" ,"WHZ", 'CLUSTER')], as.numeric)
-  df <- df %>% drop_na('WHZ')
-  df <- df %>% drop_na('MONTHS')
-  df <- df %>% drop_na('CLUSTER')
+  df <- df |> tidyr::drop_na('WHZ')
+  df <- df |> tidyr::drop_na('MONTHS')
+  df <- df |> tidyr::drop_na('CLUSTER')
   if(nrow(df) == 0){
     return(NA)
   }
@@ -62,13 +62,13 @@ calcul_quality_score <- function(read_lines_file){
   overall_age <- round(prop.test(sum(df$AGE_u30), length(df$AGE_u30), p = 0.459495)$p.value,3)
 
 
-  skew <- round(skewKurt(df[df$flag_WHZ == 0,]$WHZ)$s, 2)
-  kur <- round(skewKurt(df[df$flag_WHZ == 0,]$WHZ)$k, 1)
+  skew <- round( nipnTK::skewKurt(df[df$flag_WHZ == 0,]$WHZ)$s, 2)
+  kur <- round( nipnTK::skewKurt(df[df$flag_WHZ == 0,]$WHZ)$k, 1)
   std_weight <- round(sd(df[df$flag_WHZ == 0, ]$WHZ),2)
 
-  dps_height <- round(digitPreference(df$HEIGHT)$dps)
-  dps_weight <- round(digitPreference(df$WEIGHT)$dps)
-  if(all(is.na(df$MUAC))){dps_muac <- 0}else{dps_muac <- round(digitPreference(as.numeric(df$MUAC), digits = 0)$dps)}
+  dps_height <- round( nipnTK::digitPreference(df$HEIGHT)$dps)
+  dps_weight <- round( nipnTK::digitPreference(df$WEIGHT)$dps)
+  if(all(is.na(df$MUAC))){dps_muac <- 0}else{dps_muac <- round( nipnTK::digitPreference(as.numeric(df$MUAC), digits = 0)$dps)}
 
   count <- c()
   for (var in unique(df$CLUSTER)){

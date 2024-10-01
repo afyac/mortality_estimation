@@ -24,7 +24,7 @@ individual_output_update <- function(dir_path){
     while(length(files) > 1){ ##because of the metadata file
       file_name_path <- paste(dir_path, 'admin2_surveys/individual_surveys/csv_files/', files[2], sep="")
       if(is.na(match(files[2], 'metadata.csv'))){
-        metadata <- metadata_file[metadata_file$SurveyID == str_split(files[2], fixed('.csv'))[1][[1]][1],]
+        metadata <- metadata_file[metadata_file$SurveyID == stringr::str_split(files[2], stringr::fixed('.csv'))[1][[1]][1],]
 
         df <- read.csv(paste(dir_path, 'admin2_surveys/individual_surveys/csv_files/', files[2], sep=""))
         if(nrow(df)!=1){
@@ -79,44 +79,44 @@ update_metadata <-function(new_data, metadata){
   ##Calculate the lshtm design to produce cdr update
   if(length(unique(new_data$Cluster)) == 1 | length(unique(new_data$Cluster)) == 0){
     metadata_up$lshtm_survey_design <- "SRS or exhaustive"
-    survey_design <- svydesign(id = ~0, data = subset(new_data, p_time > 0) )
-    survey_design_u5 <- svydesign(id = ~0, data = subset(new_data, p_time_u5 > 0))
-    survey_design_f <- svydesign(id = ~0, data = subset(new_data, p_time_f > 0))
-    survey_design_m <- svydesign(id = ~0, data = subset(new_data, p_time_m > 0) )
+    survey_design <- survey::svydesign(id = ~0, data = subset(new_data, p_time > 0) )
+    survey_design_u5 <- survey::svydesign(id = ~0, data = subset(new_data, p_time_u5 > 0))
+    survey_design_f <- survey::svydesign(id = ~0, data = subset(new_data, p_time_f > 0))
+    survey_design_m <- survey::svydesign(id = ~0, data = subset(new_data, p_time_m > 0) )
   }else{
     metadata_up$lshtm_survey_design <- "multi-stage cluster"
-    survey_design <- svydesign(id = ~Cluster, data = subset(new_data, p_time > 0) )
-    survey_design_u5 <- svydesign(id = ~Cluster, data = subset(new_data, p_time_u5 > 0))
-    survey_design_f <- svydesign(id = ~Cluster, data = subset(new_data, p_time_f > 0))
-    survey_design_m <- svydesign(id = ~Cluster, data = subset(new_data, p_time_m > 0) )
+    survey_design <- survey::svydesign(id = ~Cluster, data = subset(new_data, p_time > 0) )
+    survey_design_u5 <- survey::svydesign(id = ~Cluster, data = subset(new_data, p_time_u5 > 0))
+    survey_design_f <- survey::svydesign(id = ~Cluster, data = subset(new_data, p_time_f > 0))
+    survey_design_m <- survey::svydesign(id = ~Cluster, data = subset(new_data, p_time_m > 0) )
   }
-  fit <- svyglm(n_died~NULL, survey_design, family="poisson", offset=log(p_time) )
+  fit <- survey::svyglm(n_died~NULL, survey_design, family="poisson", offset=log(p_time) )
   metadata_up$lshtm_cdr_est <- exp(summary(fit)$coefficients[[1]])* 10000
   metadata_up$lshtm_cdr_log_se <- summary(fit)$coefficients[[2]]
   metadata_up$lshtm_cdr_lci <- exp(summary(fit)$coefficients[[1]] - 1.96 * summary(fit)$coefficients[[2]] ) * 10000
   metadata_up$lshtm_cdr_uci <- exp(summary(fit)$coefficients[[1]] + 1.96 * summary(fit)$coefficients[[2]] ) * 10000
 
 
-  fit <- svyglm(n_died_u5~NULL, survey_design_u5, family="poisson", offset=log(p_time_u5) )
+  fit <- survey::svyglm(n_died_u5~NULL, survey_design_u5, family="poisson", offset=log(p_time_u5) )
   metadata_up$lshtm_cdr_u5_est <- exp(summary(fit)$coefficients[[1]] ) * 10000
   metadata_up$lshtm_cdr_u5_log_se <- summary(fit)$coefficients[[2]]
   metadata_up$lshtm_cdr_u5_lci <- exp(summary(fit)$coefficients[[1]] - 1.96 * summary(fit)$coefficients[[2]] ) * 10000
   metadata_up$lshtm_cdr_u5_uci <- exp(summary(fit)$coefficients[[1]] + 1.96 * summary(fit)$coefficients[[2]] ) * 10000
 
-  fit <- svyglm(n_died_f~NULL, survey_design_f, family="poisson", offset=log(p_time_f) )
+  fit <- survey::svyglm(n_died_f~NULL, survey_design_f, family="poisson", offset=log(p_time_f) )
   metadata_up$lshtm_cdr_f_est <- exp(summary(fit)$coefficients[[1]] ) * 10000
   metadata_up$lshtm_cdr_f_log.se <- summary(fit)$coefficients[[2]]
   metadata_up$lshtm_cdr_f_lci <- exp(summary(fit)$coefficients[[1]] - 1.96 * summary(fit)$coefficients[[2]] ) * 10000
   metadata_up$lshtm_cdr_f_uci <- exp(summary(fit)$coefficients[[1]] + 1.96 * summary(fit)$coefficients[[2]] ) * 10000
 
-  fit <- svyglm(n_died_m~NULL, survey_design_m, family="poisson", offset=log(p_time_m) )
+  fit <- survey::svyglm(n_died_m~NULL, survey_design_m, family="poisson", offset=log(p_time_m) )
   metadata_up$lshtm_cdr_m_est <- exp(summary(fit)$coefficients[[1]] ) * 10000
   metadata_up$lshtm_cdr_m_log.se <- summary(fit)$coefficients[[2]]
   metadata_up$lshtm_cdr_m_lci <- exp(summary(fit)$coefficients[[1]] - 1.96 * summary(fit)$coefficients[[2]] ) * 10000
   metadata_up$lshtm_cdr_m_uci <- exp(summary(fit)$coefficients[[1]] + 1.96 * summary(fit)$coefficients[[2]] ) * 10000
 
   if (is.na(inj_code) == FALSE){
-    fit <- svyglm(n_died_inj~NULL, survey_design, family="poisson", offset=log(p_time) )
+    fit <- survey::svyglm(n_died_inj~NULL, survey_design, family="poisson", offset=log(p_time) )
     metadata_up$lshtm_cdr_inj_est <- exp(summary(fit)$coefficients[[1]] ) * 10000
     metadata_up$lshtm_cdr_inj_log_se <- summary(fit)$coefficients[[2]]
   }else{
@@ -125,7 +125,7 @@ update_metadata <-function(new_data, metadata){
   }
 
   if (is.na(viol_code)==FALSE) {
-    fit <- svyglm(n_died_viol~NULL, survey_design, family="poisson", offset=log(p_time) )
+    fit <- survey::svyglm(n_died_viol~NULL, survey_design, family="poisson", offset=log(p_time) )
     metadata_up$lshtm_cdr_viol_est <- exp(summary(fit)$coefficients[[1]] ) * 10000
     metadata_up$lshtm_cdr_viol_log_se <- summary(fit)$coefficients[[2]]
   }else{
@@ -133,13 +133,13 @@ update_metadata <-function(new_data, metadata){
     metadata_up$lshtm_cdr_viol_log_se <- NA
   }
 
-  fit <- svyglm(n_born~NULL, survey_design, family="poisson", offset=log(p_time) )
+  fit <- survey::svyglm(n_born~NULL, survey_design, family="poisson", offset=log(p_time) )
   metadata_up$lshtm_cbr_est <- exp(summary(fit)$coefficients[[1]] ) * 1000 * 365
 
-  fit <- svyglm(n_join~NULL, survey_design, family="poisson", offset=log(p_time) )
+  fit <- survey::svyglm(n_join~NULL, survey_design, family="poisson", offset=log(p_time) )
   metadata_up$lshtm_in_migration_rate_est  <- exp(summary(fit)$coefficients[[1]] ) * 1000 * 365
 
-  fit <- svyglm(n_left~NULL, survey_design, family="poisson", offset=log(p_time) )
+  fit <- survey::svyglm(n_left~NULL, survey_design, family="poisson", offset=log(p_time) )
   metadata_up$lshtm_out_migration_rate_est  <- exp(summary(fit)$coefficients[[1]] ) * 1000 * 365
 
   metadata_up$lshtm_net_migration_rate_est <- metadata_up$lshtm_in_migration_rate_est -
@@ -167,21 +167,21 @@ update_metadata <-function(new_data, metadata){
 
 
 rotate_data <- function(df){
-  transpose_data <- dplyr::select(df, contains(c('sex', 'HH', 'Cluster', 'Team'))) %>%
-    pivot_longer(cols=contains('sex'), cols_vary='slowest', names_to= c('personindex'))
+  transpose_data <- dplyr::select(df, contains(c('sex', 'HH', 'Cluster', 'Team'))) |>
+    tidyr::pivot_longer(cols=contains('sex'), cols_vary='slowest', names_to= c('personindex'))
   df[colnames(dplyr::select(df, contains('join')))] <- ifelse(dplyr::select(df, contains('join')) == 'y' & is.na(dplyr::select(df, contains('join'))) == FALSE, 1, 0)
-  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('age'))) %>%
-                                                   pivot_longer(cols=contains('age'), cols_vary='slowest', names_to= c('age')), 'value'))
-  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('join'))) %>%
-                                                   pivot_longer(cols=contains('join'), cols_vary='slowest', names_to= c('age')), 'value'))
-  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('left'))) %>%
-                                                   pivot_longer(cols=contains('left'), cols_vary='slowest', names_to= c('age')), 'value'))
-  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('born'))) %>%
-                                                   pivot_longer(cols=contains('born'), cols_vary='slowest', names_to= c('age')), 'value'))
-  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('died'))) %>%
-                                                   pivot_longer(cols=contains('died'), cols_vary='slowest', names_to= c('age')), 'value'))
-  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('cause'))) %>%
-                                                   pivot_longer(cols=contains('cause'), cols_vary='slowest', names_to= c('age')), 'value'))
+  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('age'))) |>
+                                                   tidyr::pivot_longer(cols=contains('age'), cols_vary='slowest', names_to= c('age')), 'value'))
+  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('join'))) |>
+                                                   tidyr::pivot_longer(cols=contains('join'), cols_vary='slowest', names_to= c('age')), 'value'))
+  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('left'))) |>
+                                                   tidyr::pivot_longer(cols=contains('left'), cols_vary='slowest', names_to= c('age')), 'value'))
+  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('born'))) |>
+                                                   tidyr::pivot_longer(cols=contains('born'), cols_vary='slowest', names_to= c('age')), 'value'))
+  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('died'))) |>
+                                                   tidyr::pivot_longer(cols=contains('died'), cols_vary='slowest', names_to= c('age')), 'value'))
+  transpose_data <- cbind(transpose_data, dplyr::select(dplyr::select(df, contains(c('cause'))) |>
+                                                   tidyr::pivot_longer(cols=contains('cause'), cols_vary='slowest', names_to= c('age')), 'value'))
 
   colnames(transpose_data) <- c('HH', 'Cluster', 'Team', 'PersonIndex', 'Sex', 'Age', 'Join', 'Left', 'Born', 'Died', 'Cause')
   transpose_data$Sex <- ifelse(transpose_data$Sex == 'm', 1, 0)
@@ -207,8 +207,8 @@ clean_data <- function(data, metadata){
   data[which(is.na(data$Born)), 'Born'] <- 0
   data[which(is.na(data$Cause)), 'Cause'] <- 0
   data['eligeable'] <- ifelse(is.na(data$Sex) == FALSE & is.na(data$Age) == FALSE, 1, 0)
-  results <- data[which(data$eligeable == 1),] %>% group_by(newIndex) %>%
-    summarise(n = sum(eligeable), n_m = sum(Sex), n_f = sum(Sex == 0), n_u5 = sum(Age < 5),
+  results <- data[which(data$eligeable == 1),] |> dplyr::group_by(newIndex) |>
+    dplyr::summarise(n = sum(eligeable), n_m = sum(Sex), n_f = sum(Sex == 0), n_u5 = sum(Age < 5),
               n_5 = sum(Age == 5), n_u5_m = sum(Age < 5 & Sex), n_u5_f = sum(Age <5 & Sex == 0),
               n_join = sum(Join), n_join_m = sum(Join & Sex), n_join_f = sum(Join&Sex==0),
               n_join_u5=sum(Join & Age <5), n_join_5 = sum(Join & Age == 5),
@@ -230,7 +230,7 @@ clean_data <- function(data, metadata){
               p_time_u5 = (n_u5 - 0.5 * n_join_u5 + 0.5 * n_left_u5 - 0.5 * n_born + 0.5 * n_died_u5) * recall_period +
                 (n_5 - 0.5 * n_join_5 + 0.5 * n_left_5 + 0.5 * n_died_5 ) * recall_period / 365
     )
-  results <- results %>% separate_wider_delim(newIndex, '_', names=c('Cluster', 'HH'))
+  results <- results |> tidyr::separate_wider_delim(newIndex, '_', names=c('Cluster', 'HH'))
   results$surveyId <- metadata[which(!is.na(metadata$SurveyID)),]$SurveyID
   results$stratum <- metadata[which(!is.na(metadata$District)),]$District
   if(length(metadata[which(!is.na(metadata$Quality_Score)),]$Quality_Score) ==0){
