@@ -9,3 +9,5 @@ __Note__: If you only wish to view and experiment with the RShiny App for foreca
 two options. The first one is to use the GitHub repository available in the following link: 
 https://github.com/afyac/Forecasting_Scenario_App. The second one is to use to launch the RShiny App from the folder entitled "10_rshiny_app" and follow the instructions provided in the following video:
 [https://lshtm.clo](https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7ea184cf-2028-4554-867a-b0d901059162)https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7ea184cf-2028-4554-867a-b0d901059162.
+
+As storage space on GitHub is limited, please email yamna.ouchtar@lstm.ac.uk if you would like access to the raw datasets.
